@@ -1,10 +1,10 @@
 <?php
 /**
- * Theme functions for Make Us Care 3.0
+ * Theme functions for Seraphim
  */
 
-if (!defined('MUC3_VERSION')) {
-    define('MUC3_VERSION', '1.0.0');
+if (!defined('seraphim_2')) {
+    define('seraphim_2', '2.0.0');
 }
 
 add_action('after_setup_theme', function () {
@@ -12,8 +12,8 @@ add_action('after_setup_theme', function () {
     add_theme_support('post-thumbnails');
     add_theme_support('html5', ['search-form','comment-form','comment-list','gallery','caption','style','script']);
     register_nav_menus([
-        'primary' => __('Primary Menu', 'make-us-care-3-0'),
-        'footer'  => __('Footer Menu', 'make-us-care-3-0'),
+        'primary' => __('Primary Menu', 'seraphim-2'),
+        'footer'  => __('Footer Menu', 'seraphim-2'),
     ]);
 });
 
@@ -40,10 +40,10 @@ add_action('wp_enqueue_scripts', function () {
     // Theme CSS
     $theme_css = get_template_directory() . '/assets/scss/style.css?v=1';
     wp_enqueue_style(
-        'muc3-style',
+        'seraphim-style',
         get_template_directory_uri() . '/assets/scss/style.css',
         ['bootstrap-css','muc3-fonts'],
-        file_exists($theme_css) ? filemtime($theme_css) : MUC3_VERSION
+        file_exists($theme_css) ? filemtime($theme_css) : seraphim_2
     );
 
     // jQuery & jQuery UI (bundled with WP)
@@ -61,10 +61,10 @@ add_action('wp_enqueue_scripts', function () {
 
     // Theme JS (placeholder)
     wp_enqueue_script(
-        'muc3-theme',
+        'seraphim-master',
         get_template_directory_uri() . '/assets/js/theme.js',
         ['jquery'],
-        MUC3_VERSION,
+        seraphim_2,
         true
     );
 });
@@ -72,7 +72,7 @@ add_action('wp_enqueue_scripts', function () {
 
 add_action('widgets_init', function () {
     register_sidebar([
-        'name'          => __('Primary Sidebar', 'make-us-care-3-0'),
+        'name'          => __('Primary Sidebar', 'seraphim-2'),
         'id'            => 'primary-sidebar',
         'before_widget' => '<section id="%1$s" class="widget %2$s mb-4">',
         'after_widget'  => '</section>',
