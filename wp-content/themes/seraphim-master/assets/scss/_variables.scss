@@ -1,0 +1,51 @@
+@mixin breakpoint($class) {
+  @if $class == xs {
+    @media (min-width: 576px) { @content; }
+  }
+ 
+  @else if $class == sm {
+    @media (min-width: 768px) { @content; }
+  }
+ 
+  @else if $class == md {
+    @media (min-width: 992px) { @content; }
+  }
+ 
+  @else if $class == lg {
+    @media (min-width: 1200px) { @content; }
+  }
+
+  @else if $class == xl {
+    @media (min-width: 1400px) { @content; }
+  }
+  
+   @else if $class == sml {
+    @media (max-width: 768px) { @content; }
+  }
+ 
+  @else {
+    @warn "Breakpoint mixin supports: xs, sm, md, lg";
+  }
+}
+
+// === Variables ===
+$font-family-base: 'Unbounded', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', 'Liberation Sans', sans-serif;
+
+$peach: #FFF0E6;
+$black: #000000;
+$mint: #78D9BF;
+$red: #EA4243;
+$yellow: #FFE88A;
+$sky: #89CDFF;
+$violet: #9C84FF;
+$pink: #FF89CD;
+
+// Semantic aliases
+$primary: $violet;
+$secondary: $mint;
+$accent: $pink;
+$bg: $peach;
+$text: $black;
+
+$line-height-base: 1.5;
+$container-max: 1200px;

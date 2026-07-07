@@ -1,0 +1,136 @@
+html {
+  font-size: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: $font-family-base;
+  font-weight: 400;
+  font-size: 15px;
+  color: $text;
+  background-color: $bg;
+  line-height: $line-height-base;
+}
+
+/* Headings */
+h1, .h1 { 
+  font-family: $font-family-base; 
+  font-weight: 300; 
+  font-size: 4rem; 
+  line-height: 1; 
+  letter-spacing: -0.5px; 
+  margin-bottom: 40px; 
+
+  @include breakpoint(md){
+      font-size: 6rem; 
+  }
+
+  @include breakpoint(lg){
+      font-size: 8rem; 
+  }
+}
+
+h2, .h2 { 
+  font-family: $font-family-base; 
+  font-weight: 400; 
+  font-size: 1.5rem; 
+  line-height: 1.2; 
+
+  @include breakpoint(md){
+      font-size: 1.75rem; 
+  }
+
+  @include breakpoint(lg){
+      font-size: 2rem; 
+  }
+}
+
+
+h3, .h3 { 
+  font-family: $font-family-base; 
+  font-weight: 300; 
+  font-size: 60px; 
+  line-height: 1.1; 
+
+  @include breakpoint(md){
+      font-size: 4rem; 
+  }
+}
+
+/* Paragraphs */
+p { font-size: 15px; font-weight: 400; line-height: 1.6; margin-bottom: 1rem; }
+p.large { font-size: 20px; font-weight: 400; line-height: 30px; }
+p b, p strong, .text-bold { font-weight: 900; font-size: 15px; }
+
+.copyCon {
+  &.large p {font-size: 20px; font-weight: 400; line-height: 30px;}
+  &.xl p {font-size: 20px; font-weight: 400; line-height: 1.2;}
+
+  h2 {
+  &.large {
+    font-size: 60px;
+    font-weight: 300;
+    line-height: 0.95;
+    margin-bottom: 2rem;
+  }
+  &.xl {
+    font-size: 3rem; 
+    font-weight: 300; 
+    line-height: 0.95;
+    margin-bottom: 2rem;
+    
+    @include breakpoint(md){
+      font-size: 4rem; 
+    }
+
+    @include breakpoint(xl){
+        font-size: 5rem; 
+    }
+  }
+  }
+}
+
+
+/* Utilities for palette */
+.bg-peach { background-color: $peach !important; }
+.bg-mint { background-color: $mint !important; }
+.bg-red { background-color: $red !important; }
+.bg-yellow { background-color: $yellow !important; }
+.bg-sky { background-color: $sky !important; }
+.bg-violet { background-color: $violet !important; }
+.bg-pink { background-color: $pink !important; }
+
+.text-black { color: $black !important; }
+.text-mint { color: $mint !important; }
+.text-red { color: $red !important; }
+.text-yellow { color: $yellow !important; }
+.text-sky { color: $sky !important; }
+.text-violet { color: $violet !important; }
+.text-pink { color: $pink !important; }
+
+/* Buttons (basic example) */
+.btn-brand {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  font-weight: 600;
+  border-radius: 9999px;
+  background: $primary;
+  color: white;
+  text-decoration: none;
+  transition: transform .15s ease, opacity .15s ease;
+  &:hover { transform: translateY(-1px); opacity: 0.95; color: white; }
+}
+
+.centerTxt {
+  text-align: center;
+}
+
+a, a:active, a:hover {
+  color: $violet;
+
+  &.noStyle {
+    color: inherit;
+    text-decoration: none;
+  }
+}
