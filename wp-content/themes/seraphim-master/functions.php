@@ -41,7 +41,7 @@ add_action('wp_enqueue_scripts', function () {
     $theme_css = get_template_directory() . '/assets/scss/style.css?v=1';
     wp_enqueue_style(
         'seraphim-style',
-        get_template_directory_uri() . '/assets/scss/style.css',
+        get_template_directory_uri() . '/assets/scss/main.css',
         ['bootstrap-css','muc3-fonts'],
         file_exists($theme_css) ? filemtime($theme_css) : seraphim_2
     );
