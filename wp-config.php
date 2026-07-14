@@ -134,6 +134,8 @@ define( 'DOMAIN_CURRENT_SITE', '192.168.1.120:8065' );
 define( 'PATH_CURRENT_SITE', '/' );
 define( 'SITE_ID_CURRENT_SITE', 1 );
 define( 'BLOG_ID_CURRENT_SITE', 1 );
+
+@ini_set('upload_max_size' , '256M' );
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */

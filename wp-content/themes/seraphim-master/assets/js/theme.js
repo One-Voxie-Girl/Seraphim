@@ -20,6 +20,4 @@ document.addEventListener('DOMContentLoaded', function () {
     document.body.classList.toggle('no-scroll');
   });
 
-  // Optional: close when clicking a link
- 
 });
