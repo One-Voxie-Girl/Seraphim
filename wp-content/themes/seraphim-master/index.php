@@ -8,6 +8,119 @@
     <?php endif; ?>
 
 
+        <!-- LATEST RESULTS -->
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+
+            <div class="resultsDownloadCon">
+                <div class="resultsDownloadHeader">
+                    <h2>Latest results</h2>
+                    <a href="#">View all results</a>
+                </div>
+
+                <div class="resultsDownloadList">
+                    <div class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Interim Report (full) to 31 December 2025</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <a href="#" class="button secondary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </a>
+                    </div>
+
+                    <div class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Quarterly Factsheet Q2 Fy2025/26</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <a href="#" class="button secondary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </a>
+                    </div>
+
+                    <div class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Annual Report</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <a href="#" class="button secondary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </a>
+                    </div>
+
+                    <div class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Interim Report (full) to 31 December 2025</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <a href="#" class="button secondary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-12 col-md-6">
+            <div class="thirdPartyResearchCon">
+                <div class="thirdPartyResearchHeader">
+                    <h2>Third party research</h2>
+                    <a href="#">View all research</a>
+                </div>
+
+                <div class="thirdPartyResearchList">
+                    <a href="#" class="thirdPartyResearchItem">
+                        <div class="thirdPartyResearchItem__image" style="background-image: url('src/img/card-background-ssit-v1.jpg');"></div>
+                        <div class="thirdPartyResearchItem__content">
+                            <div class="thirdPartyResearchItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="thirdPartyResearchItem">
+                        <div class="thirdPartyResearchItem__image" style="background-image: url('src/img/card-background-vc-v2.jpg');"></div>
+                        <div class="thirdPartyResearchItem__content">
+                            <div class="thirdPartyResearchItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="thirdPartyResearchItem">
+                        <div class="thirdPartyResearchItem__image" style="background-image: url('src/img/card-background-accelerator-v2.jpg');"></div>
+                        <div class="thirdPartyResearchItem__content">
+                            <div class="thirdPartyResearchItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<!-- LATEST RESULTS END -->
+
+
+
+
         <div class="container">
             <div class="row">
                 <div class="col-7">
@@ -31,7 +144,7 @@
                         <a href="#" class="secondary" rel="bookmark">Secondary</a>
                     </p>
 
-                    <button class="primary">For retail investor</button>
+                    <button>For retail investor</button>
 
                     <button class="secondary">For retail investor <i class="ci-expand"></i></button>
                     
