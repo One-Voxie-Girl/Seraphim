@@ -53,10 +53,11 @@ $cta_link = get_sub_field('cta_link');
 <?php } ?>
 
 <video
-  class="video-scroll-scale"
-  autoplay muted playsinline loop
-  preload="none"
->
+    class="video-scroll-scale"
+    autoplay muted playsinline loop
+    preload="auto"
+    style="width: 100%; height: 100%; object-fit: cover; transform: scale(0.5); border-radius: 100px;"
+  >
   <?php if ($portrait_version): ?>
     <source
       src="<?php echo esc_url($portrait_version); ?>"
@@ -69,7 +70,6 @@ $cta_link = get_sub_field('cta_link');
     <source
       src="<?php echo esc_url($video_id); ?>"
       type="video/mp4"
-      media="(min-width: 1024px)"
     >
   <?php endif; ?>
 

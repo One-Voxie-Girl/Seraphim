@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $args = array(
-    'post_type'      => 'company',
+    'post_type'      => 'portfolio',
     'posts_per_page' => -1,
     'orderby'        => 'title',
     'order'          => 'ASC',

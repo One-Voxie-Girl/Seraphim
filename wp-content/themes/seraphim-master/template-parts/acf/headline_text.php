@@ -31,12 +31,12 @@ if ($block_height == "short") {
 } ?>">
     <div class="container">
         <div class="row">
-            <div class="col-7">
+
                 <?php if ($tagline) { ?><h2
                     class="title prefix <?php echo $tagline_size; ?>"><?= $tagline; ?></h2><?php } ?>
                 <?php if ($headline) { ?><h1 class="<?php echo $headline_size; ?>"><?= $headline; ?></h1><?php } ?>
                 <?php if ($subtext) { ?><p class="<?php echo $subtext_size; ?>"><?= $subtext; ?></p><?php } ?>
-            </div>
+
         </div>
     </div>
     <?php

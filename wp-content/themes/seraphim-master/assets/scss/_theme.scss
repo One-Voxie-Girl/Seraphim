@@ -2007,111 +2007,117 @@ body.mobile-menu-open {
 }
 
 
+
+
+
 // Third party research
 
 .thirdPartyResearchCon {
-    .thirdPartyResearchHeader {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-        gap: 24px;
-        margin-bottom: 36px;
+  .thirdPartyResearchHeader {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 36px;
 
-        h2 {
-            font-size: clamp(32px, 3vw, 44px);
-            line-height: 1;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        a {
-            color: $secondary;
-            flex-shrink: 0;
-            font-size: 18px;
-            line-height: 1.2;
-            padding-bottom: 7px;
-        }
+    h2 {
+      font-size: clamp(32px, 3vw, 44px);
+      line-height: 1;
+      margin: 0;
+      text-transform: uppercase;
     }
 
-    .thirdPartyResearchList {
-        display: grid;
+    a {
+      color: $secondary;
+      flex-shrink: 0;
+      font-size: 18px;
+      line-height: 1.2;
+      padding-bottom: 7px;
+    }
+  }
+
+  .thirdPartyResearchList {
+    display: grid;
+  }
+
+  .thirdPartyResearchItem {
+    align-items: center;
+    color: $white;
+    display: grid;
+    gap: 28px;
+    grid-template-columns: minmax(150px, 31%) minmax(0, 1fr);
+    padding: 28px 0;
+
+    &::before,
+    &::after {
+      content: none;
+    }
+
+    &:not(:last-child) {
+      border-bottom: 1px solid rgba($white, 0.25);
+    }
+
+    &:hover {
+      color: $white;
+    }
+  }
+
+  .thirdPartyResearchItem__image {
+    aspect-ratio: 4 / 3;
+    background-position: center;
+    background-size: cover;
+    border-radius: 15px;
+    overflow: hidden;
+    width: 100%;
+  }
+
+  .thirdPartyResearchItem__content {
+    min-width: 0;
+  }
+
+  .thirdPartyResearchItem__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    margin-bottom: 16px;
+
+    .caption {
+      color: rgba($white, 0.75);
+      white-space: nowrap;
+    }
+  }
+
+  h4 {
+    color: rgba($white, 0.85);
+    font-family: $F37;
+    font-size: clamp(18px, 1.55vw, 24px);
+    font-weight: 400;
+    line-height: 1.25;
+    margin: 0;
+  }
+
+  @media (max-width: 991.98px) {
+    margin-top: 60px;
+  }
+
+  @media (max-width: 575.98px) {
+    .thirdPartyResearchHeader {
+      align-items: flex-start;
+      flex-direction: column;
     }
 
     .thirdPartyResearchItem {
-        align-items: center;
-        color: $white;
-        display: grid;
-        gap: 28px;
-        grid-template-columns: minmax(150px, 31%) minmax(0, 1fr);
-        padding: 28px 0;
-
-        &::before,
-        &::after {
-            content: none;
-        }
-
-        &:not(:last-child) {
-            border-bottom: 1px solid rgba($white, 0.25);
-        }
-
-        &:hover {
-            color: $white;
-        }
+      align-items: flex-start;
+      gap: 18px;
+      grid-template-columns: 1fr;
+      padding: 24px 0;
     }
 
     .thirdPartyResearchItem__image {
-        aspect-ratio: 4 / 3;
-        background-position: center;
-        background-size: cover;
-        border-radius: 15px;
-        overflow: hidden;
-        width: 100%;
+      aspect-ratio: 16 / 10;
     }
-
-    .thirdPartyResearchItem__content {
-        min-width: 0;
-    }
-
-    .thirdPartyResearchItem__meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 8px 10px;
-        margin-bottom: 16px;
-
-        .caption {
-            color: rgba($white, 0.75);
-            white-space: nowrap;
-        }
-    }
-
-    h4 {
-        color: rgba($white, 0.85);
-        font-family: $F37;
-        font-size: clamp(18px, 1.55vw, 24px);
-        font-weight: 400;
-        line-height: 1.25;
-        margin: 0;
-    }
-
-    @media (max-width: 991.98px) {
-        margin-top: 60px;
-    }
-
-    @media (max-width: 575.98px) {
-        .thirdPartyResearchHeader {
-            align-items: flex-start;
-            flex-direction: column;
-        }
-
-        .thirdPartyResearchItem {
-            align-items: flex-start;
-            gap: 18px;
-            grid-template-columns: 1fr;
-            padding: 24px 0;
-        }
-
-        .thirdPartyResearchItem__image {
-            aspect-ratio: 16 / 10;
-        }
-    }
+  }
 }
+
+
+

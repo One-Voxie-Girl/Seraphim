@@ -7,6 +7,14 @@
       <p><?php _e('No posts found.', 'make-us-care-3-0'); ?></p>
     <?php endif; ?>
 
+<!--TODO
+Video and background video
+ individual pages for companies, insights and results
+
+
+
+-->
+
 
         <!-- LATEST RESULTS -->
 
@@ -76,7 +84,7 @@
                     <a href="#">View all research</a>
                 </div>
 
-                <div class="thirdPartyResearchList">
+                <div class="InsightsShortList">
                     <a href="#" class="thirdPartyResearchItem">
                         <div class="thirdPartyResearchItem__image" style="background-image: url('src/img/card-background-ssit-v1.jpg');"></div>
                         <div class="thirdPartyResearchItem__content">
