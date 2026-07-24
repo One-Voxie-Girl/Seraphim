@@ -1,0 +1,946 @@
+<html>
+    <head>
+
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+	    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+       
+
+    </head>
+    <body>
+
+
+
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top headerCon">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="#">
+        <img src="https://investors.seraphim.vc/wp-content/themes/seraphimvc/src/images/logo.png" />
+    </a>
+ 
+	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+	            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+	            aria-expanded="false" aria-label="Toggle navigation">
+	      <span class="navbar-toggler-icon" aria-hidden="true">
+	        <span class="navbar-toggler-line"></span>
+	        <span class="navbar-toggler-line"></span>
+	        <span class="navbar-toggler-line"></span>
+	      </span>
+	    </button>
+ 
+    <div class="collapse navbar-collapse" id="mainNavbar">
+        
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+ 
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Portfolio</a>
+        </li>
+ 
+        <li class="nav-item">
+          <a class="nav-link" href="#">Share Data</a>
+        </li>
+
+        <!-- Top-level dropdown -->
+        <li class="nav-item dropdown">
+	          <a class="nav-link" href="#" id="productsDropdown" role="button"
+	             data-bs-toggle="dropdown" aria-expanded="false">
+	            Investor Relations
+	          </a>
+          <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+            <li><a class="dropdown-item" href="#">Item 1</a></li>
+ 
+            <!-- Second-level dropdown (submenu) -->
+            <li class="dropdown-submenu">
+	              <a class="dropdown-item submenu-item" href="#" id="electronicsDropdown">Item 2</a>
+              <ul class="dropdown-menu" aria-labelledby="electronicsDropdown">
+                <li><a class="dropdown-item" href="#">One</a></li>
+                <li><a class="dropdown-item" href="#">Two</a></li>
+                <li><a class="dropdown-item" href="#">Three</a></li>
+              </ul>
+            </li>
+ 
+            <li class="dropdown-submenu">
+	              <a class="dropdown-item submenu-item" href="#" id="clothingDropdown">Item 3</a>
+              <ul class="dropdown-menu" aria-labelledby="clothingDropdown">
+                <li><a class="dropdown-item" href="#">One</a></li>
+                <li><a class="dropdown-item" href="#">Two</a></li>
+                <li><a class="dropdown-item" href="#">Three</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        
+        <li class="nav-item">
+          <a class="nav-link" href="#">Insights</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+    </ul>
+
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Why Space?</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<!-- HEADER -->
+
+<section class="pageHeaderCon">
+
+    <div class="headerVideoCon">
+        <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+            <source src="https://cdn.skiv.com/u/BkGdVMp/dd31cbbf798d6e3a0e43c427628b0a5d77e57e63058eee1a1539f1efd61ae4c7/videos/video.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12 col-lg-7">
+
+                <h2 class="title prefix">
+                    The world's first listed SpaceTech fund
+                </h2>
+                <h1>invest in the companies building the space economy</h1>
+                <p>A publicly listed fund giving you access to the multi-trillion-dollar global SpaceTech sector through a single LSE-listed share.</p>
+                
+                <div class="buttonsCon">
+                    <a href="#" class="button">
+                        For retail investor
+                    </a>
+
+                    <a href="#" class="button secondary">
+                        For retail investor <i class="ci-expand"></i>
+                    </a>
+
+                </div>
+
+            </div>
+
+            <div class="col-12 col-lg-5 tickerCol">
+
+                <div class="tickerCon">
+                    <div class="tickerPanel">
+                        <div class="tickerPanel__item">
+                            <div class="tickerPanel__value">
+                                SSIT: <span>130.5p</span> <span class="tickerPanel__divider">|</span> SSIC: <span>230.5p</span>
+                            </div>
+                            <div class="tickerPanel__meta">23 Mar 2026 &middot; LSE close</div>
+                        </div>
+
+                        <div class="tickerPanel__item">
+                            <p class="tickerPanel__value">
+                                NAV per share: <span>142.3p</span>
+                            </p>
+                            <p class="tickerPanel__meta">As at 31 Dec 2025</p>
+                        </div>
+                    </div>
+
+                    <div class="tickerMeta">
+                        <span class="caption">LSE:SSIT</span>
+                        <span class="caption">ISIN: GB00BKPG0138</span>
+                        <span class="caption">FCA REGULATED</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container">
+        <div class="row statsRowCon">
+    
+            <div class="activeCorners">
+                <div class="top"></div>
+                <div class="bottom"></div>
+            </div>
+
+        
+            <div class="col-12 col-md-3">
+                <h2>$332m</h2>
+                <p>Value</p>
+            </div>
+            <div class="col-12 col-md-3">
+                <h2>20+</h2>
+                <p>Value</p>
+            </div>
+            <div class="col-12 col-md-3">
+                <h2>198%</h2>
+                <p>Value</p>
+            </div>
+            <div class="col-12 col-md-3">
+                <h2>12</h2>
+                <p>Value</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- HEADER END -->
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+
+            <!-- LATEST RESULTS -->
+
+            <div class="resultsDownloadCon">
+                <div class="resultsDownloadHeader">
+                    <h2>Latest results</h2>
+                    <a href="#">View all results</a>
+                </div>
+
+                <div class="resultsDownloadList">
+                    <a href="#" class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Interim Report (full) to 31 December 2025</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <span class="button tertiary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </span>
+                    </a>
+
+                    <a href="#" class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Quarterly Factsheet Q2 Fy2025/26</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <span class="button tertiary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </span>
+                    </a>
+
+                    <a href="#" class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Annual Report</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <span class="button tertiary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </span>
+                    </a>
+
+                    <a href="#" class="resultsDownloadItem">
+                        <div class="resultsDownloadItem__content">
+                            <h4>Interim Report (full) to 31 December 2025</h4>
+                            <span class="caption">28 Mar 2026</span>
+                        </div>
+
+                        <span class="button tertiary resultsDownloadItem__button">
+                            Open document <i class="ci-Download"></i>
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <!-- LASTEST RESULTS END -->
+        </div>
+
+        <div class="col-12 col-md-6">
+
+            <!-- REASEACH -->
+
+            <div class="thirdPartyResearchCon">
+                <div class="thirdPartyResearchHeader">
+                    <h2>Third party research</h2>
+                    <a href="#">View all research</a>
+                </div>
+
+                <div class="contentList">
+                    <a href="#" class="contentListItem">
+                        
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1541873676-a18131494184?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNwYWNlfGVufDB8fDB8fHwy');"></div>
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contentListItem">
+
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3BhY2V8ZW58MHx8MHx8fDI%3D');"></div>
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contentListItem">
+
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1484589065579-248aad0d8b13?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fHNwYWNlfGVufDB8fDB8fHwy');"></div>
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">Research</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+                            <h4>Third-Party Research on SSIT by Edison</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- RESEARCH END -->
+
+        </div>
+
+    </div>
+</div>
+
+
+<!-- VIDEO -->
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+             <div class="videoCon">
+                <video playsinline preload="metadata" data-duration="1:15">
+                    <source src="https://cdn.skiv.com/u/BkGdVMp/dd31cbbf798d6e3a0e43c427628b0a5d77e57e63058eee1a1539f1efd61ae4c7/videos/video.mp4" type="video/mp4">
+                </video>
+                <button class="videoPlayButton" type="button" aria-label="Play video"></button>
+                <span class="videoDuration">00:00</span>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- VIDEO END -->
+
+
+<!-- PLATFORMS -->
+<div class="container">
+    <div class="platformsCon">
+        <div class="row g-4">
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="#" class="platformCard">
+                    <div class="platformCard__brand">
+                        <span class="platformLogo platformLogo--hl">HL</span>
+                        <h4>Hargreaves Lansdown</h4>
+                    </div>
+
+                    <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="#" class="platformCard">
+                    <div class="platformCard__brand">
+                        <span class="platformLogo platformLogo--aj" aria-hidden="true"></span>
+                        <h4>AJ Bell</h4>
+                    </div>
+
+                    <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="#" class="platformCard">
+                    <div class="platformCard__brand">
+                        <span class="platformLogo platformLogo--ii">ii</span>
+                        <h4>Interactive Investor</h4>
+                    </div>
+
+                    <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                </a>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-3">
+                <a href="#" class="platformCard">
+                    <div class="platformCard__brand">
+                        <span class="platformLogo platformLogo--curation">C.</span>
+                        <h4>Curation Corp</h4>
+                    </div>
+
+                    <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- PLATFORMS END-->
+
+
+<!-- NEWS FEED -->
+
+<div class="container">
+    <div class="newsFeedCon">
+        <div class="contentFeedHeader">
+            <h3>Latest on SSIT</h3>
+            <a href="#">View all insights</a>
+        </div>
+
+        <div class="row">
+            <div class="col-12 col-lg-7">
+                <a href="#" class="contentFeedFeature">
+
+                    
+                    
+                    <div class="contentFeedFeature__image" style="background-image: url('https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?w=1400&auto=format&fit=crop&q=80&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                        
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                    </div>
+
+                    <div class="contentListItem__meta">
+                        <span class="caption">News</span>
+                        <span class="caption">26 Mar 2026</span>
+                    </div>
+
+                    <h4>Case Study: ALL.SPACE x Quadsat</h4>
+                    <p>Field-Proven innovation in electronically steerable antennas for LEO Communications Seraphim portfolio companies ALL.SPACE and Quadsat</p>
+                </a>
+            </div>
+
+            <div class="col-12 col-lg-5">
+                <div class="contentList">
+                    <a href="#" class="contentListItem">
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1419242902214-272b3f66ee7a?w=700&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8c3BhY2V8ZW58MHx8MHx8fDI%3D');"></div>
+
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">News</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+
+                            <h4>SpaceTech Predictions for 2026</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contentListItem">
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=700&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <span class="contentListItem__play" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">Webinar</span>
+                                <span class="caption">43:20</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+
+                            <h4>Portfolio Spotlight: LambdaVision</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contentListItem">
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1541873676-a18131494184?w=700&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTB8fHNwYWNlfGVufDB8fDB8fHwy');"></div>
+
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">News</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+
+                            <h4>Xona raises $170M Series C for Next-Gen Navigation</h4>
+                        </div>
+                    </a>
+
+                    <a href="#" class="contentListItem">
+                        <div class="activeCorners gradientCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+                        <div class="contentListItem__image" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=700&auto=format&fit=crop&q=70&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <span class="contentListItem__play" aria-hidden="true"></span>
+                        </div>
+
+                        <div class="contentListItem__content">
+                            <div class="contentListItem__meta">
+                                <span class="caption">Video</span>
+                                <span class="caption">43:20</span>
+                                <span class="caption">26 Mar 2026</span>
+                            </div>
+
+                            <h4>Six Seraphim Companies Earn Spots on Fast Company's Most Innovative List</h4>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NEWS FEED END -->
+
+
+<!-- NEWSLETTER -->
+<div class="container">
+    <section class="newsletterCon">
+        <div class="row align-items-center">
+            <div class="col-12 col-lg-5">
+                <div class="newsletterCopy">
+                    <h2>Weekly SpaceTech Digest</h2>
+                    <p>Subscribe to our newsletter to get market news, research and portfolio updates.</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-lg-5 offset-lg-1">
+                <form class="newsletterForm" action="#" method="post">
+                    <label class="caption" for="newsletterEmail">Email</label>
+                    <div class="newsletterInputCon">
+                        <input id="newsletterEmail" name="email" type="email" placeholder="Enter email..." autocomplete="email">
+                        <button type="submit" aria-label="Subscribe"><i class="ci-Chevron_Right"></i></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+</div>
+<!-- NEWSLETTER END -->
+
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-7">
+
+                    <h2 class="title prefix">
+                        Our portfolio
+                    </h2>
+                    <h1>The companies in the SSIT portfolio</h1>
+                    <p>Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth. <a href="#" class="nonactive" rel="bookmark">Link name</a></p>
+
+                    
+                    <p class="label">
+                        Label
+                    </p>
+
+                    <p>
+                        <a href="#" rel="bookmark">Link name</a>
+                    </p>
+
+                    <p>
+                        <a href="#" class="secondary" rel="bookmark">Secondary</a>
+                    </p>
+
+                    <button>For retail investor</button>
+
+                    <button class="secondary">For retail investor <i class="ci-expand"></i></button>
+                    
+                    <button class="tertiary">For retail investor</button>
+
+                    <button class="tertiary small">For retail investor</button>
+
+                    <div>
+                        <span class="caption">LSE: SSIT</span>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        <div class="badge">
+                            <span class="text">IPO</span>
+                        </div>
+                        <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+
+                        <div class="detailsCon">
+                            
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                            
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth. Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth. Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth. Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth.
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card portfolio_card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        <div class="badge">
+                            <span class="text">IPO</span>
+                        </div>
+                        Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth. 
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="container" style="padding-top: 200px; padding-bottom: 200px;">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card team-card big-card noHover">
+                        <div class="row">
+                            <div class="col-12 col-md-6">
+                                <div class="imageCon" style="background-image: url('https://seraphim.vc/wp-content/uploads/2024/11/Seraphim-MarkBoggett_1745_c-1024x683.jpg');"></div>
+                            </div>
+                            <div class="col-12 col-md-6 contentSection">
+                               
+                                <div class="contentCon">
+                                    <h4 class="title">Mark Boggett</h4>
+                                </div>
+
+                                <div class="detailsCon">                            
+                                    <span class="caption">Investment Manager, CEO & Managing Partner</span>
+                                </div>
+
+                                <div class="contentCon">
+                                    <span class="white65">Mark is a pioneer in Space Tech investment having co-founded the Seraphim Space Fund and invested into a portfolio which includes three companies that have achieved billion-dollar valuations. Previously, Mark was a director at YFM Equity Partners, the firm behind the high profile British Smaller Companies VCT 1 & 2. He also worked at Brewin Dolphin and Williams de Broe. He completed his undergraduate degree in Accounting & Finance, Masters in Economics and Finance from the University of Leeds.</span>
+                                    
+                                    <a href="#" class="iconLink featuredTeamLinkedin">
+                                        <div class="iconCon">
+                                            <div class="circleIcon linkedin"></div>
+                                            View LinkedIn profile
+                                        </div>
+                                    </a>
+
+                                </div>
+
+                                
+                                    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card team-card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        <div class="imageCon" style="background-image: url('https://seraphim.vc/wp-content/uploads/2024/11/Seraphim-MarkBoggett_1745_c-1024x683.jpg');"></div>
+                        <div class="contentCon">
+                            <h4 class="title small">Mark Boggett</h4>
+                        </div>
+
+                        <div class="detailsCon">                            
+                            <span class="caption">Investment Manager, CEO & Managing Partner</span>
+                        </div>
+                        
+                        <div class="textCtaCon">
+                            <a href="#" class="openDrawer">Read more  <i class="ci-expand"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card team-card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        <div class="imageCon" style="background-image: url('https://seraphim.vc/wp-content/uploads/2024/11/Seraphim-MarkBoggett_1745_c-1024x683.jpg');"></div>
+                        <div class="contentCon">
+                            <h4 class="title small">Mark Boggett</h4>
+                        </div>
+
+                        <div class="detailsCon">                            
+                            <span class="caption">Investment Manager, CEO & Managing Partner</span>
+                        </div>
+                        
+                        <div class="textCtaCon">
+                            <a href="#" class="openDrawer">Read more  <i class="ci-expand"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-md-4">
+
+                    <div class="notch-card team-card">
+                        <span class="notch-card__tab" aria-hidden="true"></span>
+                        <div class="imageCon" style="background-image: url('https://seraphim.vc/wp-content/uploads/2024/11/Seraphim-MarkBoggett_1745_c-1024x683.jpg');"></div>
+                        <div class="contentCon">
+                            <h4 class="title small">Mark Boggett</h4>
+                        </div>
+
+                        <div class="detailsCon">                            
+                            <span class="caption">Investment Manager, CEO & Managing Partner</span>
+                        </div>
+                        
+                        <div class="textCtaCon">
+                            <a href="#" class="openDrawer">Read more  <i class="ci-expand"></i></a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="drawerCon">
+            <div class="drawer">
+
+                <div class="iconCon close closeDrawer" type="button" aria-label="Close drawer">
+                    <div class="circleIcon grey"><i class="ci-close_LG"></i></div>
+                </div>
+                
+                <div class="container-fluid">
+                    <div class="row topRow">
+                        <div class="col-12 col-md-6 col-lg-3">
+                            <div class="imageCon" style="background-image: url('https://seraphim.vc/wp-content/uploads/2024/11/Seraphim-MarkBoggett_1745_c-1024x683.jpg');"></div>
+                        </div>
+                        <div class="col-12 col-md-9">
+                            <h4 class="title">Mark Boggett</h4>
+                            <span class="caption white65">Investment Manager, CEO & Managing Partner</span>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="bio white65">
+                                Will Whitehorn was formerly a director of Virgin Group and President of Virgin Galactic until 2010. He has since pursued a private equity and non-executive career. He is the President of UKSpace, the trade body that represents the space industry in the UK, Chairman of AAC Clydespace, a listed satellite manufacturing company, Good Energy PLC, Scottish Event Campus Limited and Craneware PLC. He also sits on the board of the Royal Air Force and has recently retired as Deputy Chairman of Stagecoach Group PLC after serving on its board for nine years. Will has been a Fellow of the Royal Aeronautical Society since 2013.
+                            </div>
+
+                            <a href="#" class="iconLink">
+                                <div class="iconCon">
+                                    <div class="circleIcon linkedin"></div>
+                                    View LinkedIn profile
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+              
+
+
+            </div>
+        </div>
+
+
+        <div class="container" style="padding-bottom: 300px;">
+            <div class="row">
+
+                <div class="col-12 col-md-4">
+                    <div class="ecosystemBox solar">
+                        
+                        <div class="activeCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="ecosystemTitle">Launchpad</div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="ecosystemBox aqua">
+                        
+                        <div class="activeCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="ecosystemTitle">Launchpad</div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="ecosystemBox terrain">
+                        
+                        <div class="activeCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="ecosystemTitle">Launchpad</div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-4">
+                    <div class="ecosystemBox manager">
+                        
+                        <div class="activeCorners">
+                            <div class="top"></div>
+                            <div class="bottom"></div>
+                        </div>
+
+                        <div class="ecosystemTitle">Launchpad</div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="ecosystemBody white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+            </div>
+        </div>
+
+
+
+        <!-- FOOTER -->
+        <footer class="siteFooter">
+            <div class="footerVideoPlaceholder" aria-hidden="true"></div>
+
+            <div class="container-fluid">
+                <div class="footerMain">
+                    <div class="footerIntro">
+                        <a href="#" class="footerLogo">
+                            <img src="https://investors.seraphim.vc/wp-content/themes/seraphimvc/src/images/logo.png" alt="Seraphim Space Investment Trust PLC">
+                        </a>
+
+                        <p>The world's first listed SpaceTech investment trust.<br>Investment Manager: Seraphim Space Manager LLP.</p>
+                        <p>UK: 1 Fleet Place, London, EC4M 7WS</p>
+
+                        <div class="footerMeta">
+                            <span class="caption">LSE Listed</span>
+                            <span class="caption">SSIT</span>
+                            <span class="caption">ISIN: GB00BKPG0138</span>
+                        </div>
+
+                        <div class="footerSocials">
+                            <a href="#" aria-label="LinkedIn"><img src="src/img/linkedin.svg" alt=""></a>
+                            <a href="#" aria-label="YouTube"><img src="src/img/youtube.svg" alt=""></a>
+                            <a href="#" aria-label="X"><img src="src/img/x.svg" alt=""></a>
+                        </div>
+                    </div>
+
+                    <nav class="footerNav" aria-label="Footer navigation">
+                        <div class="footerNavGroup">
+                            <h5>Invest</h5>
+                            <a href="#">Retail investor</a>
+                            <a href="#">Institutional investor</a>
+                            <a href="#">Investor Guide</a>
+                            <a href="#">Portfolio</a>
+                            <a href="#">Share &amp; Performance</a>
+                        </div>
+
+                        <div class="footerNavGroup">
+                            <h5>Investor Relations</h5>
+                            <a href="#">Results</a>
+                            <a href="#">Governance &amp; Team</a>
+                            <a href="#">RNS Announcements</a>
+                            <a href="#">Documents &amp; Publications</a>
+                        </div>
+
+                        <div class="footerNavGroup">
+                            <h5>Company</h5>
+                            <a href="#">About SSIT</a>
+                            <a href="#">Insights</a>
+                            <a href="#">Podcast</a>
+                            <a href="#">Newsroom</a>
+                            <a href="#">Press</a>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+
+            <div class="footerBottom">
+                <div class="container-fluid">
+                    <div class="footerBottomInner">
+                        <p>2026 &copy; Seraphim Space Manager LLP<br>Designed and developed by Make Us Care</p>
+
+                        <div class="footerLegal">
+                            <a href="#">Privacy Policy</a>
+                            <a href="#">Cookies</a>
+                            <a href="#">Accessibility Statement</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <!-- FOOTER END -->
+
+
+
+     <script src="src/script.js" type="text/javascript"></script>
+
+    </body>
+</html>
