@@ -94,7 +94,7 @@ h1, h2, h3 {
 }
 
 h4, h5 {
-  font-family: F37 Neuro;
+  font-family: Neuro;
   font-size: clamp(18px, 1.55vw, 18px);
   font-weight: 400;
   line-height: 1.25;
@@ -106,7 +106,7 @@ h5 {
 }
 
 .title {
-  font-family: F37 Neuro;
+  font-family: Neuro;
   letter-spacing: 2%;
 }
 @media (min-width: 576px) {
@@ -159,7 +159,7 @@ h5 {
 }
 
 .label {
-  font-family: F37 Neuro;
+  font-family: Neuro;
 }
 @media (min-width: 576px) {
   .label {
@@ -181,7 +181,7 @@ h5 {
 }
 
 .caption {
-  font-family: F37 Neuro;
+  font-family: Neuro;
 }
 @media (min-width: 576px) {
   .caption {
@@ -219,7 +219,7 @@ h5 {
 }
 
 p {
-  font-family: F37 Neuro;
+  font-family: Neuro;
 }
 @media (min-width: 576px) {
   p {
@@ -235,7 +235,7 @@ p {
 }
 
 a {
-  font-family: F37 Neuro;
+  font-family: Neuro;
 }
 @media (min-width: 576px) {
   a {
@@ -317,7 +317,7 @@ a.nonactive:not(.button):hover::before {
 
 body, html {
   background: #020714;
-  font-family: F37 Neuro;
+  font-family: Neuro;
 }
 @media (min-width: 576px) {
   body, html {
@@ -3050,7 +3050,7 @@ body.mobile-menu-open {
 
 .shareChart__axis text {
   fill: rgba(255, 255, 255, 0.55);
-  font-family: F37 Neuro;
+  font-family: Neuro;
   font-size: 12px;
 }
 
