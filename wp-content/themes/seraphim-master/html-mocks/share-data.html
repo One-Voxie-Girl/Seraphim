@@ -1,0 +1,362 @@
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet" />
+        <link href="css/main.css" rel="stylesheet" />
+    </head>
+    <body>
+
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top headerCon">
+  <div class="container-fluid">
+
+    <a class="navbar-brand" href="index.html">
+        <img src="https://investors.seraphim.vc/wp-content/themes/seraphimvc/src/images/logo.png" alt="Seraphim Space Investment Trust PLC" />
+    </a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon" aria-hidden="true">
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+        <span class="navbar-toggler-line"></span>
+      </span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="mainNavbar">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="portfolio.html">Portfolio</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="share-data.html">Share Data</a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link" href="#" id="productsDropdown" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false">
+            Investor Relations
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="productsDropdown">
+            <li><a class="dropdown-item" href="#">Results</a></li>
+            <li><a class="dropdown-item" href="#">Governance &amp; Team</a></li>
+            <li><a class="dropdown-item" href="#">Documents &amp; Publications</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">Insights</a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link" href="#">About</a>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Contact</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<main class="shareDataPage">
+    <section class="pageHeaderCon shareDataHero">
+        <div class="headerVideoCon">
+            <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                <source src="https://cdn.skiv.com/u/BkGdVMp/dd31cbbf798d6e3a0e43c427628b0a5d77e57e63058eee1a1539f1efd61ae4c7/videos/video.mp4" type="video/mp4">
+            </video>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <h2 class="title prefix">Share data</h2>
+                    <h1>Share price &amp; performance</h1>
+                    <p>Live share price, NAV, and key fund information for Seraphim Space Investment Trust (LSE: SSIT).</p>
+                </div>
+            </div>
+
+            <div class="shareDataMetricGrid">
+                <div class="shareDataMetric">
+                    <span class="shareDataMetric__label shareDataMetric__label--green">Share price</span>
+                    <h3>169.50</h3>
+                    <span class="shareDataMetric__pill positive">9.50p | 5.94%</span>
+                    <p>Correct at 14:32 03/04/2026 · LON: SSIT</p>
+                </div>
+
+                <div class="shareDataMetric">
+                    <span class="shareDataMetric__label shareDataMetric__label--yellow">Ongoing charges</span>
+                    <h3>1.52%</h3>
+                    <span class="shareDataMetric__pill negative">-0.23%</span>
+                    <p>Last updated Q3 FY2025/2</p>
+                </div>
+
+                <div class="shareDataMetric">
+                    <span class="shareDataMetric__label shareDataMetric__label--blue">NAV per share</span>
+                    <h3>177.63p</h3>
+                    <span class="shareDataMetric__pill neutral">-160p prev. NAV</span>
+                    <p>Last updated Q3 FY2025/2</p>
+                </div>
+
+                <div class="shareDataMetric">
+                    <span class="shareDataMetric__label shareDataMetric__label--yellow">Premium / Discount</span>
+                    <h3>12.44%</h3>
+                    <span class="shareDataMetric__pill negative">-27.07%</span>
+                    <p>Last updated Q3 FY2025/2</p>
+                </div>
+            </div>
+
+            <div class="shareChartPanel">
+                <span class="notch-card__tab" aria-hidden="true"></span>
+
+                <div class="shareChartPanel__header">
+                    <div>
+                        <h4>Share price chart</h4>
+                        <div class="shareChartLegend">
+                            <span><i class="shareChartLegend__line"></i>Share price</span>
+                            <span><i class="shareChartLegend__line shareChartLegend__line--dashed"></i>NAV per share</span>
+                        </div>
+                    </div>
+
+                    <div class="shareChartRange" aria-label="Chart range">
+                        <button type="button" class="active">1M</button>
+                        <button type="button">6M</button>
+                        <button type="button">1Y</button>
+                        <button type="button">3Y</button>
+                        <button type="button">All</button>
+                    </div>
+                </div>
+
+                <div class="shareChart">
+                    <svg viewBox="0 0 980 360" role="img" aria-label="Share price chart for the previous month">
+                        <defs>
+                            <linearGradient id="shareChartLine" x1="0" x2="1" y1="0" y2="0">
+                                <stop offset="0%" stop-color="#89DEAB" />
+                                <stop offset="100%" stop-color="#00AA50" />
+                            </linearGradient>
+                        </defs>
+
+                        <g class="shareChart__grid">
+                            <line x1="54" y1="44" x2="944" y2="44" />
+                            <line x1="54" y1="116" x2="944" y2="116" />
+                            <line x1="54" y1="188" x2="944" y2="188" />
+                            <line x1="54" y1="260" x2="944" y2="260" />
+                            <line x1="54" y1="332" x2="944" y2="332" />
+                            <line x1="54" y1="44" x2="54" y2="332" />
+                            <line x1="210" y1="44" x2="210" y2="332" />
+                            <line x1="370" y1="44" x2="370" y2="332" />
+                            <line x1="528" y1="44" x2="528" y2="332" />
+                            <line x1="690" y1="44" x2="690" y2="332" />
+                            <line x1="850" y1="44" x2="850" y2="332" />
+                        </g>
+
+                        <g class="shareChart__axis">
+                            <text x="28" y="49">200</text>
+                            <text x="34" y="121">150</text>
+                            <text x="34" y="193">100</text>
+                            <text x="40" y="265">50</text>
+                            <text x="46" y="337">0</text>
+                            <text x="188" y="356">6 mar</text>
+                            <text x="348" y="356">12 mar</text>
+                            <text x="506" y="356">18 mar</text>
+                            <text x="668" y="356">24 mar</text>
+                            <text x="828" y="356">30 mar</text>
+                        </g>
+
+                        <polyline class="shareChart__nav" points="54,184 132,178 210,180 290,182 370,174 448,176 528,174 608,177 690,176 770,178 850,175 944,170" />
+                        <polyline class="shareChart__price" stroke="url(#shareChartLine)" points="54,198 104,178 154,204 210,222 260,205 310,160 370,178 424,140 482,183 540,172 608,222 686,172 734,184 784,160 850,178 914,158 944,104" />
+                    </svg>
+                </div>
+
+                <p class="shareChartPanel__source">Performance figures based on previous close price. Source: Hargreaves Lansdown / Morningstar, as at 23 March 2026</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="fundDetailsCon">
+        <div class="container">
+            <h2>Fund details</h2>
+            <h4 class="shareDataSubheading">Trading</h4>
+
+            <div class="fundDetailsPanel">
+                <div class="activeCorners">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+
+                <div class="fundDetailItem">
+                    <span>LSE ticker</span>
+                    <strong>SSIT</strong>
+                </div>
+                <div class="fundDetailItem">
+                    <span>ISIN number</span>
+                    <strong>GB00BMFNMW27 <i class="ci-Copy"></i></strong>
+                </div>
+                <div class="fundDetailItem">
+                    <span>Sedol number</span>
+                    <strong>BMFNMW2 <i class="ci-Copy"></i></strong>
+                </div>
+                <div class="fundDetailItem">
+                    <span>Currency</span>
+                    <strong>GBX (pence sterling)</strong>
+                </div>
+                <div class="fundDetailItem">
+                    <span>Total assets</span>
+                    <strong>£338m</strong>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="shareDataPlatforms">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-6">
+                    <h2 class="title prefix">Invest in space today</h2>
+                    <h1>Access SSIT on your platform</h1>
+                    <p>SSIT is listed on the London Stock Exchange and can be purchased through most major UK investment platforms, including within an ISA or SIPP.</p>
+                </div>
+            </div>
+
+            <div class="platformsCon">
+                <div class="row g-4">
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="platformCard">
+                            <div class="platformCard__brand">
+                                <span class="platformLogo platformLogo--hl">HL</span>
+                                <h4>Hargreaves Lansdown</h4>
+                            </div>
+
+                            <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="platformCard">
+                            <div class="platformCard__brand">
+                                <span class="platformLogo platformLogo--aj" aria-hidden="true"></span>
+                                <h4>AJ Bell</h4>
+                            </div>
+
+                            <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="platformCard">
+                            <div class="platformCard__brand">
+                                <span class="platformLogo platformLogo--ii">ii</span>
+                                <h4>Interactive Investor</h4>
+                            </div>
+
+                            <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                        </a>
+                    </div>
+
+                    <div class="col-12 col-md-6 col-lg-3">
+                        <a href="#" class="platformCard">
+                            <div class="platformCard__brand">
+                                <span class="platformLogo platformLogo--curation">C.</span>
+                                <h4>Curation Corp</h4>
+                            </div>
+
+                            <span class="platformCard__cta">visit site <i class="ci-External_Link"></i></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="fundDataLinksCon">
+        <div class="container">
+            <h4>For more fund data</h4>
+            <div class="fundDataLinks">
+                <a href="#">Factsheet</a>
+                <a href="#">Annual Reports</a>
+                <a href="#">Contact IR</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer class="siteFooter">
+    <div class="footerVideoPlaceholder" aria-hidden="true"></div>
+
+    <div class="container-fluid">
+        <div class="footerMain">
+            <div class="footerIntro">
+                <a href="#" class="footerLogo">
+                    <img src="https://investors.seraphim.vc/wp-content/themes/seraphimvc/src/images/logo.png" alt="Seraphim Space Investment Trust PLC">
+                </a>
+
+                <p>The world's first listed SpaceTech investment trust.<br>Investment Manager: Seraphim Space Manager LLP.</p>
+                <p>UK: 1 Fleet Place, London, EC4M 7WS</p>
+
+                <div class="footerMeta">
+                    <span class="caption">LSE Listed</span>
+                    <span class="caption">SSIT</span>
+                    <span class="caption">ISIN: GB00BKPG0138</span>
+                </div>
+
+                <div class="footerSocials">
+                    <a href="#" aria-label="LinkedIn"><img src="src/img/linkedin.svg" alt=""></a>
+                    <a href="#" aria-label="YouTube"><img src="src/img/youtube.svg" alt=""></a>
+                    <a href="#" aria-label="X"><img src="src/img/x.svg" alt=""></a>
+                </div>
+            </div>
+
+            <nav class="footerNav" aria-label="Footer navigation">
+                <div class="footerNavGroup">
+                    <h5>Invest</h5>
+                    <a href="#">Retail investor</a>
+                    <a href="#">Institutional investor</a>
+                    <a href="#">Investor Guide</a>
+                    <a href="#">Portfolio</a>
+                    <a href="#">Share &amp; Performance</a>
+                </div>
+
+                <div class="footerNavGroup">
+                    <h5>Investor Relations</h5>
+                    <a href="#">Results</a>
+                    <a href="#">Governance &amp; Team</a>
+                    <a href="#">RNS Announcements</a>
+                    <a href="#">Documents &amp; Publications</a>
+                </div>
+
+                <div class="footerNavGroup">
+                    <h5>Company</h5>
+                    <a href="#">About SSIT</a>
+                    <a href="#">Insights</a>
+                    <a href="#">Podcast</a>
+                    <a href="#">Newsroom</a>
+                    <a href="#">Press</a>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+    <div class="footerBottom">
+        <div class="container-fluid">
+            <div class="footerBottomInner">
+                <p>2026 &copy; Seraphim Space Manager LLP<br>Designed and developed by Make Us Care</p>
+
+                <div class="footerLegal">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Cookies</a>
+                    <a href="#">Accessibility Statement</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<script src="src/script.js" type="text/javascript"></script>
+
+    </body>
+</html>
