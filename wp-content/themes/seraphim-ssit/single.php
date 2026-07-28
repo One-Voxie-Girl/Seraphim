@@ -28,8 +28,8 @@ $container = get_theme_mod( 'understrap_container_type' );
 				<?php
 				while ( have_posts() ) {
 					the_post();
-					
-					get_template_part( 'loop-templates/content', 'company' );
+
+					get_template_part( 'loop-templates/content', get_post_type()  );
 					understrap_post_nav();
 
 					// If comments are open or we have at least one comment, load up the comment template.

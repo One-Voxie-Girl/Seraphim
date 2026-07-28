@@ -81,8 +81,32 @@ add_action('widgets_init', function () {
     ]);
 });
 
+/**
+ * Populate platforms_checklist from investment_platform repeater in options page
+ */
+add_filter('acf/load_field/name=platforms_checklist', function($field) {
+    $field['choices'] = [];
+    $platforms = get_field('investment_platform', 'option');
+
+    if ($platforms) {
+        foreach ($platforms as $platform) {
+
+            $name = is_array($platform) ? ($platform['platform_name'] ?? $platform['name'] ?? '') : $platform;
+
+            if ($name) {
+                $field['choices'][$name] = $name;
+            }
+        }
+    }
+
+    return $field;
+});
+
 add_action('wp_enqueue_scripts', function() {
   wp_dequeue_script('bootstrap');
   wp_deregister_script('bootstrap');
 }, 100);
+
+
+
 
