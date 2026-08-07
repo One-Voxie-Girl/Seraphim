@@ -7,77 +7,10 @@
     </head>
     <body>
 
-<nav class="navbar navbar-expand-lg navbar-dark fixed-top headerCon">
-  <div class="container-fluid">
 
-    <a class="navbar-brand" href="index.html">
-        <img src="https://investors.seraphim.vc/wp-content/themes/seraphimvc/src/images/logo.png" />
-    </a>
 
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-	            data-bs-target="#mainNavbar" aria-controls="mainNavbar"
-	            aria-expanded="false" aria-label="Toggle navigation">
-	      <span class="navbar-toggler-icon" aria-hidden="true">
-	        <span class="navbar-toggler-line"></span>
-	        <span class="navbar-toggler-line"></span>
-	        <span class="navbar-toggler-line"></span>
-	      </span>
-	    </button>
-
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="portfolio.html">Portfolio</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Share Data</a>
-        </li>
-
-        <li class="nav-item dropdown">
-          <a class="nav-link" href="#" id="productsDropdown" role="button"
-             data-bs-toggle="dropdown" aria-expanded="false">
-            Investor Relations
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="productsDropdown">
-            <li><a class="dropdown-item" href="#">Results</a></li>
-            <li><a class="dropdown-item" href="#">Governance &amp; Team</a></li>
-            <li><a class="dropdown-item" href="#">Documents &amp; Publications</a></li>
-          </ul>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">Insights</a>
-        </li>
-
-        <li class="nav-item">
-          <a class="nav-link" href="#">About</a>
-        </li>
-      </ul>
-
-      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-        <li class="nav-item">
-          <a class="nav-link" href="#">Contact</a>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<main class="portfolioPage">
-    <section class="portfolioHero">
-        <div class="portfolioHeroBg" aria-hidden="true"></div>
-
-        <div class="container">
-            <div class="row">
-                <div class="col-12 col-lg-7">
-                    <h2 class="title prefix">Our portfolio</h2>
-                    <h1>The companies in the SSIT portfolio</h1>
-                    <p>Our entrepreneurs see the infinite possibilities of Space and transform those possibilities into game changing companies. Our portfolio companies are at the frontier of tomorrow shaping a better future on Earth.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+<main class="">
+  
 
     <section class="portfolioHoldings">
         <div class="container">
@@ -109,206 +42,297 @@
 
             <div class="portfolioFilterBar">
                 <div class="portfolioFilters">
-                    <button type="button">Sector <i class="ci-Caret_Down_SM"></i></button>
-                    <button type="button">Category <i class="ci-Caret_Down_SM"></i></button>
-                    <button type="button">Location <i class="ci-Caret_Down_SM"></i></button>
+                    <div class="portfolioFilterDropdown">
+                        <button class="portfolioFilterToggle" type="button" aria-expanded="false">
+                            Sector <i class="ci-Caret_Down_SM"></i>
+                        </button>
+                        <div class="portfolioFilterMenu">
+                            <button type="button"><i class="ci-Chevron_Right"></i>All</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Launch</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Downlink</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Platform</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Product</button>
+                        </div>
+                    </div>
+
+                    <div class="portfolioFilterDropdown">
+                        <button class="portfolioFilterToggle" type="button" aria-expanded="false">
+                            Category <i class="ci-Caret_Down_SM"></i>
+                        </button>
+                        <div class="portfolioFilterMenu">
+                            <button type="button"><i class="ci-Chevron_Right"></i>All</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Agriculture</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Data Platforms</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Defence &amp; Security</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Earth Observation</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Ground Terminals</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>In-orbit Services</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Materials &amp; Energy</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Navigation</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Satcoms</button>
+                        </div>
+                    </div>
+
+                    <div class="portfolioFilterDropdown">
+                        <button class="portfolioFilterToggle" type="button" aria-expanded="false">
+                            Location <i class="ci-Caret_Down_SM"></i>
+                        </button>
+                        <div class="portfolioFilterMenu">
+                            <button type="button"><i class="ci-Chevron_Right"></i>All</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>Europe</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>North America</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>United Kingdom</button>
+                            <button type="button"><i class="ci-Chevron_Right"></i>United States</button>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="portfolioViewToggle" aria-label="View options">
-                    <button type="button" class="active" aria-label="Grid view"><i class="ci-More_Grid_Small"></i></button>
-                    <button type="button" aria-label="List view"><i class="ci-List_Unordered"></i></button>
+                    <button type="button" class="active" aria-label="Grid view" aria-pressed="true" data-portfolio-view="grid"><i class="ci-More_Grid_Big"></i></button>
+                    <button type="button" aria-label="List view" aria-pressed="false" data-portfolio-view="list"><i class="ci-List_Unordered"></i></button>
                 </div>
             </div>
 
             <div class="portfolioGrid">
-                <div class="notch-card portfolioHoldingCard">
-                    <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge">Top holding</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-ssit-v2.jpg');">
-                        <h3>ICEYE</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>ICEYE</h4>
-                        <p>World's largest SAR satellite constellation for real-time Earth monitoring, day and night.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Platform</span>
-                            <span class="caption">Earth observation</span>
-                        </div>
-                    </div>
+                <div class="portfolioListHeader" aria-hidden="true">
+                    <span>Company</span>
+                    <span>Sector</span>
+                    <span>Category</span>
+                    <span>Location</span>
+                    <span>% of assets</span>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="UK" data-assets="47.1%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge">Top holding</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-vc-v1.jpg');">
-                        <h3>D-Orbit</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>D-Orbit</h4>
-                        <p>Market leader in space logistics and orbital transportation for last-mile delivery.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Launch</span>
-                            <span class="caption">In-orbit services</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Platform</span>
+                            <span>Earth Observation</span>
+                            <span>UK</span>
+                            <span>47.1%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+               <div class="notch-card portfolioHoldingCard" data-location="US" data-assets="23.8%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge status">IPO</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-manager-v2.jpg');">
-                        <h3>ALL.SPACE</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>ALL.SPACE</h4>
-                        <p>One antenna to connect to any satellite in any constellation, in any orbit.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Downlink</span>
-                            <span class="caption">Ground terminals</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Downlink</span>
+                            <span>Satcoms</span>
+                            <span>US</span>
+                            <span>23.8%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="US" data-assets="12.4%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge">Top holding</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-vc-v2.jpg');">
-                        <h3>HawkEye 360</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>HawkEye 360</h4>
-                        <p>World's largest constellation collecting radio frequency signals to map invisible activities.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">HawkEye 360</span>
-                            <span class="caption">Earth observation</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Launch</span>
+                            <span>Defence &amp; Security</span>
+                            <span>US</span>
+                            <span>12.4%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="Finland" data-assets="8.6%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge">Top holding</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-accelerator-v2.jpg');">
-                        <h3>LeoLabs</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>LeoLabs</h4>
-                        <p>Short description of the company. Max 120 characters / two lines of copy.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Product</span>
-                            <span class="caption">Data platforms</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Platform</span>
+                            <span>In-orbit Services</span>
+                            <span>Finland</span>
+                            <span>8.6%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="Denmark" data-assets="31.5%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge status">IPO</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-ssit-v3.jpg');">
-                        <h3>SatVu</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>SatVu</h4>
-                        <p>Short description of the company. Max 120 characters / two lines of copy.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Platform</span>
-                            <span class="caption">Earth observation</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Product</span>
+                            <span>Materials &amp; Energy</span>
+                            <span>Denmark</span>
+                            <span>31.5%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="US" data-assets="19.3%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-manager-v1.jpg');">
-                        <h3>Xona</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>Xona Space Systems</h4>
-                        <p>Short description of the company. Max 120 characters / two lines of copy.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Platform</span>
-                            <span class="caption">Subcategory</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Platform</span>
+                            <span>Earth Observation</span>
+                            <span>US</span>
+                            <span>19.3%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
+                <div class="notch-card portfolioHoldingCard" data-location="US" data-assets="14.6%">
                     <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-accelerator-v3.jpg');">
-                        <h3>Skylo</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>Skylo</h4>
-                        <p>Short description of the company. Max 120 characters / two lines of copy.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Downlink</span>
-                            <span class="caption">Satcoms</span>
+                    <div class="notch-card-label">Top holding</div>
+                    <div class="badge">
+                            <span class="text">IPO</span>
                         </div>
-                    </div>
+                    <div class="imageCon" style="background-image: url('https://images.unsplash.com/photo-1610296669228-602fa827fc1f?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8c3BhY2V8ZW58MHx8MHx8fDI%3D');">
+                            <div class="logoCon">
+                                <svg  viewBox="0 0 90 25"  style="width: 100%; height: auto;" fill="white" xmlns="http://www.w3.org/2000/svg"><path class="header-icon--fill" clip-rule="evenodd" d="m16.4592 13.2193c0 3.9134 2.2587 6.4579 5.0324 7.4741l-1.5862 4.0562c-1.8186-.5795-3.2054-1.5369-4.3846-2.6706-2.6657-2.5865-3.7038-5.4922-3.7038-8.9185 0-4.23256 1.7356-7.27259 3.7038-9.12853 2.3169-2.20864 5.1819-3.082019 8.4704-3.082019 1.4034 0 3.0476.243539 4.8248 1.041339l-1.5114 3.86303c-1.4034-.69703-2.674-.78101-3.2055-.78101-4.6338 0-7.6399 3.84623-7.6399 8.14599zm-11.9668-11.75708v23.32938h-4.4924v-23.32938zm55.2904 12.67238-7.9223-12.66398h5.323l4.9494 8.11236 4.9494-8.11236h5.323l-8.1299 12.66398v10.6654h-4.4926zm29.6298 6.7519h-6.4857v-6.374h4.692l1.5363-3.9134h-6.2283v-5.21506h4.9743l1.5363-3.92182h-11.0115v23.33778h9.4586zm-49.3027 0h6.2033l-1.5363 3.9135h-9.1597v-23.33778h10.7126l-1.5363 3.92182h-4.6836v5.21506h5.9375l-1.5363 3.9134h-4.4012z" fill-rule="evenodd"></path></svg>
+                            </div>
+                        </div>
+                        <div class="contentCon">
+                            <h4 class="title small">Company Name</h4>
+                            <span class="white65">Short description of the company. Max 120 characters or two lines of copy.</span>
+                        </div>
+                        <div class="detailsCon">
+                            <div class="captionCon">
+                                <span class="caption">Taxonomy</span>
+                                <span class="caption">subcategory</span>
+                               
+                            </div>
+                            <div class="buttonCon">
+                                <button class="tertiary small">Learn more</button>
+                            </div>
+                        </div>
+                        <div class="portfolioListValues" aria-hidden="true">
+                            <span>Platform</span>
+                            <span>Navigation</span>
+                            <span>US</span>
+                            <span>14.6%</span>
+                        </div>
                 </div>
 
-                <div class="notch-card portfolioHoldingCard">
-                    <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-vc-v3.jpg');">
-                        <h3>Zeno</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>Zeno</h4>
-                        <p>Radioisotope power systems for extreme environments: ocean floor to deep space.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Beyond Earth</span>
-                            <span class="caption">Materials &amp; Energy</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="notch-card portfolioHoldingCard">
-                    <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge status">IPO</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-ssit-v1.jpg');">
-                        <h3>Astroscale</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>Astroscale</h4>
-                        <p>On-orbit servicing and debris removal for a sustainable space environment.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Launch</span>
-                            <span class="caption">In-orbit services</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="notch-card portfolioHoldingCard">
-                    <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-manager-v3.jpg');">
-                        <h3>Planet Watchers</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>PlanetWatchers</h4>
-                        <p>SAR and optical satellite data analytics for agricultural monitoring at scale.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Launch</span>
-                            <span class="caption">In-orbit services</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="notch-card portfolioHoldingCard">
-                    <span class="notch-card__tab" aria-hidden="true"></span>
-                    <div class="portfolioHoldingBadge status">Exited</div>
-                    <div class="portfolioHoldingImage" style="background-image: url('src/img/card-background-vc-v1.jpg');">
-                        <h3>pixxel</h3>
-                    </div>
-                    <div class="portfolioHoldingBody">
-                        <h4>Pixxel</h4>
-                        <p>Hyperspectral Earth observation constellation - a health monitor for the planet.</p>
-                        <div class="portfolioTags">
-                            <span class="caption">Platform</span>
-                            <span class="caption">Earth observation</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="portfolioMoreCon">
                 <a href="#" class="button tertiary small">View more companies <i class="ci-Add_Plus"></i></a>
