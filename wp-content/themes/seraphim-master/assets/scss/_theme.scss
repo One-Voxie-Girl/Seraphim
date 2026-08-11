@@ -501,7 +501,10 @@ button, .button {
         font-size: 15px;
         border-radius: 8px;
     }
-  }
+
+}
+
+
 
 }
 
@@ -2806,6 +2809,14 @@ body.mobile-menu-open {
 
     .buttonsCon {
         margin-top: 50px;
+
+        &.rightAligned {
+            width: 100%;
+
+            button, .button {
+                float: right;
+            }
+        }
     }
 
     .tickerCol {
@@ -2930,6 +2941,23 @@ body.mobile-menu-open {
     padding-top: 70px;
     padding-bottom: 50px;
     @include activeCornersHover;
+
+    &.smallStats {
+        text-align: left;
+        color: $white65;
+        padding-top: 50px;
+        padding-bottom: 40px;
+
+        .col-12 {
+            padding-left: 60px;
+            border-right: 1px solid rgba($white, 0.2);
+
+            &:last-of-type {
+                border: none;
+            }
+        }
+        
+    }
 }
 
 
@@ -4127,6 +4155,35 @@ body.mobile-menu-open {
         button {
             flex: 1;
             min-width: 0;
+        }
+    }
+}
+
+// PORTFOLIO SINGLE
+
+.impactCon {
+    margin-top: 150px;
+    border: 1px solid rgba($white, 0.2);
+    border-radius: 20px;
+    padding:60px;
+
+    .impactOverview {
+        padding-right: 60px;
+
+        @include breakpoint(md){
+            border-right: 1px solid rgba($white, 0.2);
+        }
+    }
+
+    .sdgCon {
+        padding-left: 60px;
+
+        .sdg {
+            padding-top: 30px;
+            img {
+                width: 100%;
+                height: auto;
+            }
         }
     }
 }

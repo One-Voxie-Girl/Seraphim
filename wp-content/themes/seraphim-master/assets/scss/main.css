@@ -2274,6 +2274,12 @@ body.mobile-menu-open {
 .pageHeaderCon .buttonsCon {
   margin-top: 50px;
 }
+.pageHeaderCon .buttonsCon.rightAligned {
+  width: 100%;
+}
+.pageHeaderCon .buttonsCon.rightAligned button, .pageHeaderCon .buttonsCon.rightAligned .button {
+  float: right;
+}
 .pageHeaderCon .tickerCol {
   display: flex;
   align-items: flex-end;
@@ -2390,6 +2396,19 @@ body.mobile-menu-open {
   right: 15px;
   bottom: 15px;
   opacity: 1;
+}
+.statsRowCon.smallStats {
+  text-align: left;
+  color: #A6A7AB;
+  padding-top: 50px;
+  padding-bottom: 40px;
+}
+.statsRowCon.smallStats .col-12 {
+  padding-left: 60px;
+  border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+.statsRowCon.smallStats .col-12:last-of-type {
+  border: none;
 }
 
 .resultsDownloadCon .resultsDownloadHeader {
@@ -3405,6 +3424,31 @@ body.mobile-menu-open {
     min-width: 0;
   }
 }
+.impactCon {
+  margin-top: 150px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 20px;
+  padding: 60px;
+}
+.impactCon .impactOverview {
+  padding-right: 60px;
+}
+@media (min-width: 992px) {
+  .impactCon .impactOverview {
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+.impactCon .sdgCon {
+  padding-left: 60px;
+}
+.impactCon .sdgCon .sdg {
+  padding-top: 30px;
+}
+.impactCon .sdgCon .sdg img {
+  width: 100%;
+  height: auto;
+}
+
 @font-face {
   font-family: "coolicons";
   src: url("../fonts/coolicons.ttf?44fbbv") format("truetype"), url("../fonts/coolicons.woff?44fbbv") format("woff"), url("../fonts/coolicons.svg?44fbbv#coolicons") format("svg");
