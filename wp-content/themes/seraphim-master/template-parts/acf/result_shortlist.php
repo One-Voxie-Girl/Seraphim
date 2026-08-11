@@ -30,8 +30,16 @@ $query = new WP_Query( $args );
     <?php if ( $query->have_posts() ) : ?>
         <div class="resultsDownloadList">
             <?php while ( $query->have_posts() ) : $query->the_post();
+                $media_location = get_field( 'media_location' );
+                $media_link = get_field( 'media_link' );
                 $document = get_field( 'document' ) ?: get_field( 'result_file' );
-                $document_url = is_array( $document ) ? $document['url'] : ( is_numeric( $document ) ? wp_get_attachment_url( $document ) : $document );
+
+                if ( $media_location === '0' || $media_location === 0 ) {
+                    $document_url = $media_link;
+                } else {
+                    $document_url = is_array( $document ) ? $document['url'] : ( is_numeric( $document ) ? wp_get_attachment_url( $document ) : $document );
+                }
+
                 if ( ! $document_url ) {
                     $document_url = get_the_permalink();
                 }
@@ -42,7 +50,7 @@ $query = new WP_Query( $args );
                         <span class="caption"><?php echo get_the_date( 'd M Y' ); ?></span>
                     </div>
 
-                    <a href="<?php echo esc_url( $document_url ); ?>" class="button secondary resultsDownloadItem__button" <?php echo ! empty( $document ) ? 'download' : ''; ?>>
+                    <a href="<?php echo esc_url( $document_url ); ?>" class="button secondary resultsDownloadItem__button" <?php echo ( $media_location !== '0' && $media_location !== 0 && ! empty( $document ) ) ? 'download' : ''; ?>>
                         Open document <i class="ci-Download"></i>
                     </a>
                 </div>

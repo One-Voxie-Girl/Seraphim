@@ -70,18 +70,59 @@ if ( function_exists('have_rows') && have_rows('content_repeater') ) :
         $section_class      = get_sub_field('section_class');     // string
         $section_width      = get_sub_field('section_width');     // string
 
+        $video              = get_sub_field('video');              //int 0:no background video, 1:uploaded video, 2:external video
+        $video_file         =get_sub_field('video_file');           //video file array
+        $video_link         =get_sub_field('video_link');           //video link string
+
         // Section wrapper — keep original class composition and inline padding
         ?>
         
-        <section class="section <?php echo $section_class; ?>" <?php if($section_id) {echo 'id="' . $section_id . '"';}?> >
+        <section class="section <?php echo $section_class; ?> <?php if ($video) { echo 'section--has-video'; } ?>" <?php if($section_id) {echo 'id="' . $section_id . '"';}?> >
+
+            <?php if ( $video == 1 && ! empty( $video_file['url'] ) ) : ?>
+                <div class="background-video">
+                    <div class="background-video__inner">
+                        <video autoplay muted loop playsinline>
+                            <source src="<?php echo esc_url( $video_file['url'] ); ?>" type="<?php echo esc_attr( $video_file['mime_type'] ); ?>">
+                        </video>
+                    </div>
+                </div>
+            <?php elseif ( $video == 2 && ! empty( $video_link ) ) : ?>
+                <div class="background-video background-video--external">
+                    <div class="background-video__inner">
+                        <?php
+                        // Simple check if it's a direct video link or needs embedding
+                        if ( preg_match( '/.(mp4|webm|ogv)$/i', $video_link ) ) : ?>
+                            <video autoplay muted loop playsinline>
+                                <source src="<?php echo esc_url( $video_link ); ?>">
+                            </video>
+                        <?php else :
+                            // Assume it's an oEmbed or needs wrapping
+                            echo wp_oembed_get( $video_link, array( 'width' => 1920, 'height' => 1080 ) );
+                        endif; ?>
+                    </div>
+                </div>
+            <?php endif; ?>
 
             <?php
             // Inner content rows
             if ( have_rows('content_section') ) :
                 while ( have_rows('content_section') ) : the_row();
+                    $layout = get_row_layout();
 
-                    $col_width          = get_sub_field('numbers_of_columns');  // e.g. 6
-                    ?>
+                    if ( $layout === 'content_tabs' ) :
+                        ?>
+                        <div class="<?php if ($section_width){ echo $section_width; } else { echo 'container'; } ?>" <?php if ($section_id){ echo 'id="' . esc_attr($section_id) . '"'; }?>>
+                            <div class="row">
+                                <div class="col-12">
+                                    <?php muc3_include_acf_part('content_tabs'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
+                    else :
+                        $col_width = get_sub_field('numbers_of_columns');  // e.g. 6
+                        ?>
                         <div class="<?php if ($section_width){ echo $section_width; } else { echo 'container'; } ?>" <?php if ($section_id){ echo 'id="' . esc_attr($section_id) . '"'; }?>>
                             <div class="row">
                                 <?php
@@ -97,7 +138,8 @@ if ( function_exists('have_rows') && have_rows('content_repeater') ) :
                                 ?>
                             </div>
                         </div>
-                    <?php
+                        <?php
+                    endif;
                 endwhile;
             endif;
             ?>

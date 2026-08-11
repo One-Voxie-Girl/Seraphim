@@ -4,30 +4,34 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 
-$video_id = get_sub_field('video_id');
-$portrait_version = get_sub_field('portrait_version');
+$video_id = isset($args['video_id']) ? $args['video_id'] : get_sub_field('video_id');
+$portrait_version = isset($args['portrait_version']) ? $args['portrait_version'] : get_sub_field('portrait_version');
 
-$attachment_id = get_sub_field('placeholder_image');
+$attachment_id = isset($args['placeholder_image']) ? $args['placeholder_image'] : get_sub_field('placeholder_image');
 $size = "full size";
 $image = wp_get_attachment_image_src( $attachment_id, $size );
 
-$full_width = get_sub_field('full_width');
+$full_width = isset($args['full_width']) ? $args['full_width'] : get_sub_field('full_width');
 
-$overlay_pattern = get_sub_field('overlay_pattern');
+$overlay_pattern = isset($args['overlay_pattern']) ? $args['overlay_pattern'] : get_sub_field('overlay_pattern');
 
 //player settings
-$controls = get_sub_field('controls');
-$autoplay = get_sub_field('autoplay');
-$loop = get_sub_field('loop');
-$volume = get_sub_field('volume');
+$controls = isset($args['controls']) ? $args['controls'] : get_sub_field('controls');
+$autoplay = isset($args['autoplay']) ? $args['autoplay'] : get_sub_field('autoplay');
+$loop = isset($args['loop']) ? $args['loop'] : get_sub_field('loop');
+$volume = isset($args['volume']) ? $args['volume'] : get_sub_field('volume');
 
 // Add aspect ratio or custom height if needed
-$min_height = get_sub_field('min_height') ?: '400px';
+$min_height = (isset($args['min_height']) ? $args['min_height'] : get_sub_field('min_height')) ?: '400px';
 
-$text_overlay = get_sub_field('text_overlay');
-$headline = get_sub_field('headline');
-$cta_text = get_sub_field('cta_text');
-$cta_link = get_sub_field('cta_link');
+if (isset($args['video_id']) && !isset($args['min_height']) && !get_sub_field('min_height')) {
+    $min_height = 'auto';
+}
+
+$text_overlay = isset($args['text_overlay']) ? $args['text_overlay'] : get_sub_field('text_overlay');
+$headline = isset($args['headline']) ? $args['headline'] : get_sub_field('headline');
+$cta_text = isset($args['cta_text']) ? $args['cta_text'] : get_sub_field('cta_text');
+$cta_link = isset($args['cta_link']) ? $args['cta_link'] : get_sub_field('cta_link');
 
 $image_url = ($image && isset($image[0])) ? $image[0] : '';
 

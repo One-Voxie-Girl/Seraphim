@@ -102,6 +102,123 @@ add_filter('acf/load_field/name=platforms_checklist', function($field) {
     return $field;
 });
 
+/**
+ * Populate insight_type radio button from insight-type taxonomy
+ */
+add_filter('acf/load_field/name=insight_type', function($field) {
+    $field['choices'] = [
+        'all' => 'All'
+    ];
+
+    $terms = get_terms([
+        'taxonomy' => 'insight-type',
+        'hide_empty' => false,
+    ]);
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        foreach ($terms as $term) {
+            $field['choices'][$term->slug] = $term->name;
+        }
+    }
+
+    return $field;
+});
+
+/**
+ * Populate associated_companies checkbox with all companies from portfolio post type
+ */
+add_filter('acf/load_field/name=associated_companies', function($field) {
+    $field['choices'] = [];
+
+    $companies = get_posts([
+        'post_type'      => 'portfolio',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    ]);
+
+    if ($companies) {
+        foreach ($companies as $company) {
+            $field['choices'][$company->ID] = $company->post_title;
+        }
+    }
+
+    return $field;
+});
+
+/**
+ * Populate team_tags checkbox from team-tag taxonomy
+ */
+add_filter('acf/load_field/name=team_tags', function($field) {
+    $field['choices'] = [];
+
+    $terms = get_terms([
+        'taxonomy' => 'team-tag',
+        'hide_empty' => false,
+    ]);
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        foreach ($terms as $term) {
+            $field['choices'][$term->term_id] = $term->name;
+        }
+    }
+
+    return $field;
+});
+
+/**
+ * Populate team_member select field with all team members
+ */
+add_filter('acf/load_field/name=team_member', function($field) {
+    $field['choices'] = [];
+
+    $members = get_posts([
+        'post_type'      => 'team-members',
+        'posts_per_page' => -1,
+        'post_status'    => 'publish',
+        'orderby'        => 'title',
+        'order'          => 'ASC',
+    ]);
+
+    if ($members) {
+        foreach ($members as $member) {
+            $field['choices'][$member->ID] = $member->post_title;
+        }
+    }
+
+    return $field;
+});
+
+/**
+ * Filter team-members query to respect menu_order if needed,
+ * though get_posts by default might not. 
+ * But for the spotlight we probably just want alphabetical or recent.
+ * The load_field above uses 'title' ASC.
+ */
+
+/**
+ * Populate document_type select field from document-type taxonomy
+ */
+add_filter('acf/load_field/name=document_type', function($field) {
+    $field['choices'] = [
+        'all' => 'All'
+    ];
+
+    $terms = get_terms([
+        'taxonomy' => 'document-type',
+        'hide_empty' => false,
+    ]);
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        foreach ($terms as $term) {
+            $field['choices'][$term->slug] = $term->name;
+        }
+    }
+
+    return $field;
+});
+
 add_action('wp_enqueue_scripts', function() {
   wp_dequeue_script('bootstrap');
   wp_deregister_script('bootstrap');
