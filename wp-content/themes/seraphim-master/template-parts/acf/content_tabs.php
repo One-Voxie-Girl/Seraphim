@@ -21,13 +21,28 @@ endif;
 
 if ( ! empty( $tabs ) ) : ?>
     <div class="content-tabs-wrapper" id="<?php echo esc_attr( $tab_group_id ); ?>">
-        <div class="content-tabs-nav">
-            <?php foreach ( $tabs as $index => $tab ) : ?>
-                <button class="content-tab-link<?php echo $index === 0 ? ' active' : ''; ?>" 
-                        data-tab="<?php echo esc_attr( $tab_group_id . '-' . $index ); ?>">
-                    <?php echo esc_html( $tab['title'] ?: 'Tab ' . ($index + 1) ); ?>
-                </button>
-            <?php endforeach; ?>
+        <div class="container">
+            <div class="portfolioToolbar">
+                <div class="content-tabs-nav portfolioTabs">
+                    <?php foreach ( $tabs as $index => $tab ) : ?>
+                        <a href="#" class="content-tab-link<?php echo $index === 0 ? ' active' : ''; ?>" 
+                                data-tab="<?php echo esc_attr( $tab_group_id . '-' . $index ); ?>">
+                            <?php echo esc_html( $tab['title'] ?: 'Tab ' . ($index + 1) ); ?>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+
+                <?php if ( have_rows( 'stats_bar' ) ) : ?>
+                    <div class="portfolioStats">
+                        <?php while ( have_rows( 'stats_bar' ) ) : the_row(); ?>
+                            <div class="portfolioStat">
+                                <h3><?php the_sub_field( 'stat_data' ); ?></h3>
+                                <span class="caption"><?php the_sub_field( 'stat_label' ); ?></span>
+                            </div>
+                        <?php endwhile; ?>
+                    </div>
+                <?php endif; ?>
+            </div>
         </div>
         
         <div class="content-tabs-content">

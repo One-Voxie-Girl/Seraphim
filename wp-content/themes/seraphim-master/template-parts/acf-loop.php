@@ -77,30 +77,17 @@ if ( function_exists('have_rows') && have_rows('content_repeater') ) :
         // Section wrapper — keep original class composition and inline padding
         ?>
         
-        <section class="section <?php echo $section_class; ?> <?php if ($video) { echo 'section--has-video'; } ?>" <?php if($section_id) {echo 'id="' . $section_id . '"';}?> >
+        <section class="section <?php echo $section_class; ?> <?php if ($video) { echo 'section--has-video pageHeaderCon shareDataHero'; } ?>" <?php if($section_id) {echo 'id="' . $section_id . '"';}?> >
 
-            <?php if ( $video == 1 && ! empty( $video_file['url'] ) ) : ?>
-                <div class="background-video">
-                    <div class="background-video__inner">
-                        <video autoplay muted loop playsinline>
-                            <source src="<?php echo esc_url( $video_file['url'] ); ?>" type="<?php echo esc_attr( $video_file['mime_type'] ); ?>">
-                        </video>
-                    </div>
-                </div>
-            <?php elseif ( $video == 2 && ! empty( $video_link ) ) : ?>
-                <div class="background-video background-video--external">
-                    <div class="background-video__inner">
-                        <?php
-                        // Simple check if it's a direct video link or needs embedding
-                        if ( preg_match( '/.(mp4|webm|ogv)$/i', $video_link ) ) : ?>
-                            <video autoplay muted loop playsinline>
-                                <source src="<?php echo esc_url( $video_link ); ?>">
-                            </video>
-                        <?php else :
-                            // Assume it's an oEmbed or needs wrapping
-                            echo wp_oembed_get( $video_link, array( 'width' => 1920, 'height' => 1080 ) );
-                        endif; ?>
-                    </div>
+            <?php if ($video) : ?>
+                <div class="headerVideoCon">
+                    <video autoplay muted loop playsinline preload="metadata" aria-hidden="true">
+                        <?php if ($video == 1 && !empty($video_file['url'])) : ?>
+                            <source src="<?php echo esc_url($video_file['url']); ?>" type="<?php echo esc_attr($video_file['mime_type']); ?>">
+                        <?php elseif ($video == 2 && !empty($video_link)) : ?>
+                            <source src="<?php echo esc_url($video_link); ?>" type="video/mp4">
+                        <?php endif; ?>
+                    </video>
                 </div>
             <?php endif; ?>
 

@@ -16,6 +16,8 @@ $website_link_only = get_field( 'website_link_only' );
 $website_link      = get_field( 'website_link' );
 $company_country   = get_field( 'country' );
 $podcast_link      = get_field( 'podcast_link' );
+$valuation         = get_field( 'valuation' );
+$status            = get_field( 'status' );
 
 
 $sectors    = get_the_terms( get_the_ID(), 'company-sector' );
@@ -37,106 +39,126 @@ if ( ! is_wp_error( $countries ) && ! empty( $countries ) ) {
 
 }
 
-
+$impact_overview = get_field( 'impact_overview' ); // text area field
+$sdgs = get_field( 'sustainability_cards' );  // checkbox returning int value
 
 
 ?>
 
 <article id="post-<?php the_ID(); ?>" <?php post_class( 'portfolio-item' ); ?>>
-    <?php if ( ! empty( $background_image['url'] ) ) : ?>
-        <style>
-            body {
-                background-image: url('<?php echo esc_url( $background_image['url'] ); ?>');
-                background-size: cover;
-                background-position: center;
-                background-attachment: fixed;
-                background-repeat: no-repeat;
-            }
-            body::before {
-                content: "";
-                position: fixed;
-                inset: 0;
-                background: rgba(0, 0, 0, 0.4);
-                z-index: -1;
-            }
-        </style>
+
+    <section class="pageHeaderCon" <?php if ( ! empty( $background_image['url'] ) ) : ?> style="background-image: url('<?php echo esc_url( $background_image['url'] ); ?>');" <?php endif; ?>>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7">
+                    <h1><?php echo esc_html( $company_name ); ?></h1>
+                    <?php if ( $preview_text ) : ?>
+                        <p><?php echo esc_html( $preview_text ); ?></p>
+                    <?php endif; ?>
+                </div>
+
+                <div class="col-12 col-lg-5 tickerCol">
+                    <?php if ( $website_link ) : ?>
+                        <div class="buttonsCon rightAligned">
+                            <a href="<?php echo esc_url( $website_link ); ?>" class="button" target="_blank" rel="noopener">
+                                Visit website
+                            </a>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row statsRowCon smallstats">
+                <div class="activeCorners">
+                    <div class="top"></div>
+                    <div class="bottom"></div>
+                </div>
+
+                <div class="col-12 col-md-3">
+                    <span class="caption">Space segment</span>
+                    <h4 class="title small"><?php echo esc_html( $sector_name ); ?></h4>
+                </div>
+                <div class="col-12 col-md-3">
+                    <span class="caption">Valuation</span>
+                    <h4 class="title small"><?php echo esc_html( $valuation ); ?></h4>
+                </div>
+                <div class="col-12 col-md-3">
+                    <span class="caption">Status</span>
+                    <h4 class="title small"><?php echo esc_html( $status ); ?></h4>
+                </div>
+                <div class="col-12 col-md-3">
+                    <span class="caption">Location</span>
+                    <h4 class="title small"><?php echo esc_html( $country_name ); ?></h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEWS FEED -->
+    <?php get_template_part('template-parts/content/portfolio-insights'); ?>
+    <!-- NEWS FEED END -->
+
+    <!-- SPOTIFY EMBED -->
+    <?php if ( $podcast_link ) : ?>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <?php
+                        $embed_url = str_replace( 'spotify.com/', 'spotify.com/embed/', $podcast_link );
+                        $embed_url = strtok( $embed_url, '?' ); // Clean up query params if any
+                        ?>
+                        <iframe style="border-radius:12px" src="<?php echo esc_url( $embed_url ); ?>" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </section>
     <?php endif; ?>
-    <div class="portfolio-hero">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-12 text-white portfolio-hero__content">
-                    <h2 class="portfolio-hero__title"><?php echo esc_html( $company_name ); ?></h2>
-                    <div class="portfolio-hero__preview-container">
-                        <?php if ( $preview_text ) : ?>
-                            <div class="portfolio-hero__preview">
-                                <p><?php echo esc_html( $preview_text ); ?></p>
-                            </div>
-                        <?php endif; ?>
-                        <?php if ( $website_link ) : ?>
-                            <div class="portfolio-hero__website">
-                                <a href="<?php echo esc_url( $website_link ); ?>" class="button tertiary" target="_blank" rel="noopener">Visit Website</a>
-                            </div>
-                        <?php endif; ?>
-                    </div>
-                </div>
-            </div>
-            <div class="textRowCon">
-                <div class="container container-text-row">
-                    <div class="row text-columns-row">
-                        <div class="col-3">
-                            <div class="column-content">
-                                <div class="subtext">Space Segment</div>
-                                <h3> <?= $sector_name; ?></h3>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="column-content">
-                                <div class="subtext">Valuation</div>
-                                <h3> $1.4B</h3>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="column-content">
-                                <div class="subtext">Status</div>
-                                <h3> Public</h3>
-                            </div>
-                        </div>
-                        <div class="col-3">
-                            <div class="column-content">
-                                <div class="subtext">Location</div>
-                                <h3> <?php echo $country_name; ?></h3>
-                            </div>
-                        </div>
+    <!-- SPOTIFY EMBED END -->
 
-                    </div>
-                </div>
-                <?php
-                get_template_part('template-parts/acf/call_to_action', 'none');
-                ?>
-            </div>
+    <!-- IMPACT EMBED -->
+    <?php if ( $impact_overview || ! empty( $sdgs ) ) : ?>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="impactCon">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h3>Impact</h3>
+                                </div>
+                            </div>
 
-            <?php get_template_part('template-parts/content/portfolio-insights'); ?>
-            
-            <?php if ( $podcast_link ) : ?>
-                <div class="portfolio-podcast">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col-12">
-                                <div class="podcast-embed">
-                                    <?php
-                                    $embed_url = str_replace( 'spotify.com/', 'spotify.com/embed/', $podcast_link );
-                                    $embed_url = strtok( $embed_url, '?' ); // Clean up query params if any
-                                    ?>
-                                    <iframe style="border-radius:12px" src="<?php echo esc_url( $embed_url ); ?>" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
+                            <div class="row">
+                                <div class="col-12 col-lg-6 impactOverview">
+                                    <?php echo wp_kses_post( $impact_overview ); ?>
+                                </div>
+                                <div class="col-12 col-lg-6 sdgCon">
+                                    <?php if ( ! empty( $sdgs ) ) : ?>
+                                        <h4>Sustainability Development Goals:</h4>
+                                        <div class="row">
+                                            <?php foreach ( $sdgs as $sdg_card ) : 
+                                                // Assuming $sdg_card is the number/slug of the SDG
+                                                $sdg_image_url = 'https://seraphim.vc/wp-content/themes/seraphimvc/src/images/sdg/' . $sdg_card . '.svg';
+                                                ?>
+                                                <div class="col-6 col-md-3 sdg">
+                                                    <img src="<?php echo esc_url( $sdg_image_url ); ?>" alt="SDG <?php echo esc_attr( $sdg_card ); ?>" />
+                                                </div>
+                                            <?php endforeach; ?>
+                                        </div>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            <?php endif; ?>
+            </div>
+        </section>
+    <?php endif; ?>
+    <!-- IMPACT EMBED END -->
 
-        </div>
-    </div>
 </article>
 
 

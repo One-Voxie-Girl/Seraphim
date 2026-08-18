@@ -25,7 +25,7 @@ if ( $query->have_posts() ) : ?>
     <div class="thirdPartyResearchCon portfolio-insights">
         <div class="container">
             <div class="thirdPartyResearchHeader">
-                <h2>Insights</h2>
+                <h2>Insights on <?php echo get_the_title( $portfolio_id ); ?></h2>
             </div>
             <div class="thirdPartyResearchList">
                 <?php while ( $query->have_posts() ) : $query->the_post();
