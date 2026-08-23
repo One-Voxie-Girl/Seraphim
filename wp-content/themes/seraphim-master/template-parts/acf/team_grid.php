@@ -7,6 +7,12 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+
+/*TODO
+ * add right popout description on click
+ * fix scaling and layout with smaller constraints
+*/
+
 $selected_tags = get_sub_field('team_tags');
 
 $args = array(

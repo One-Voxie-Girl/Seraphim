@@ -3,6 +3,16 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+/*TODO
+ * add title with subtitle
+ * change colours
+ * orient graph sideways
+ * change bar style
+ * fix hover info
+*/
+
+
+
 // Get ACF sub-fields
 $data_type = get_sub_field('data_type'); // "true" for percentage, "false" for absolute
 $graph_data_raw = get_sub_field('graph_data');

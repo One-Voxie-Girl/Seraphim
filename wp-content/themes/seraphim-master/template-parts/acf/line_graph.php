@@ -3,6 +3,11 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+/*TODO
+ * large style changes needed
+ * */
+
+
 // Get ACF sub-fields
 $tagline = get_sub_field('tagline');
 $headline = get_sub_field('headline');

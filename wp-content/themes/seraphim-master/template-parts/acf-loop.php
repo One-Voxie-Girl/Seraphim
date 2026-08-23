@@ -107,6 +107,16 @@ if ( function_exists('have_rows') && have_rows('content_repeater') ) :
                             </div>
                         </div>
                         <?php
+                    elseif ( $layout === 'insights_tabs' ) :
+                        ?>
+                        <div class="<?php if ($section_width){ echo $section_width; } else { echo 'container'; } ?>" <?php if ($section_id){ echo 'id="' . esc_attr($section_id) . '"'; }?>>
+                            <div class="row">
+                                <div class="col-12">
+                                    <?php muc3_include_acf_part('insights_tabs'); ?>
+                                </div>
+                            </div>
+                        </div>
+                        <?php
                     else :
                         $col_width = get_sub_field('numbers_of_columns');  // e.g. 6
                         ?>

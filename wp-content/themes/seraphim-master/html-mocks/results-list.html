@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results List Mock</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/js/bootstrap.bundle.min.js" type="text/javascript"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/scss/main.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #030a0d;
+            color: #fff;
+            padding-top: 50px;
+            padding-bottom: 100px;
+        }
+
+        /* Replicating the specific design from the image */
+        .results-filter {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 20px 30px;
+            margin-bottom: 50px;
+            display: flex;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .results-filter__item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .results-filter__select {
+            background: transparent;
+            border: none;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+            appearance: none;
+            padding-right: 20px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' fill='none' stroke='white' stroke-width='1'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right center;
+        }
+
+        .results-filter__select:focus {
+            outline: none;
+        }
+
+        .results-year-title {
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: rgba(255, 255, 255, 0.6);
+            margin-bottom: 25px;
+            margin-top: 50px;
+            border: none;
+            padding: 0;
+        }
+
+        .result-item {
+            background: rgba(255, 255, 255, 0.02);
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 0;
+            padding: 25px 0;
+            min-height: auto;
+            backdrop-filter: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .result-item:last-child {
+            border-bottom: none;
+        }
+
+        .result-item__title {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .result-item__title h3 {
+            font-size: 18px;
+            font-weight: 400;
+            color: #fff;
+            margin: 0;
+        }
+
+        .result-item__meta {
+            display: flex;
+            align-items: center;
+            flex-shrink: 0;
+            width: 70%; /* Total width for meta columns */
+            gap: 0;
+        }
+
+        @media (max-width: 991.98px) {
+            .result-item {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 20px;
+            }
+            .result-item__meta {
+                width: 100%;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+            .result-item__type, .result-item__date, .result-item__filetype, .result-item__download-col {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .result-item__title {
+                padding-right: 0;
+            }
+        }
+
+        .result-item__type {
+            width: 20%;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            font-weight: 400;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .result-item__type::before {
+            content: '[';
+        }
+        .result-item__type::after {
+            content: ']';
+        }
+
+        .result-item__date {
+            width: 25%;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        .result-item__filetype {
+            width: 25%;
+            background: transparent;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 13px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .result-item__filetype::before {
+            content: '[';
+        }
+        .result-item__filetype::after {
+            content: ']';
+        }
+
+        .result-item__download-col {
+            width: 30%;
+            display: flex;
+            justify-content: flex-end;
+        }
+
+        .result-item__download {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 8px 20px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .result-item__download:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+            color: #fff;
+        }
+
+        /* Video specific meta */
+        .result-item--video .result-item__filetype span {
+            margin-left: 5px;
+        }
+
+        .page-bg-gradient {
+            position: fixed;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle at top right, rgba(0, 255, 128, 0.08), transparent 70%);
+            pointer-events: none;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+
+<div class="page-bg-gradient"></div>
+
+<div class="container">
+    <div class="results-filter">
+        <div class="results-filter__item">
+            <select id="filter-year" class="results-filter__select">
+                <option value="2025/26">Financial year</option>
+                <option value="2025/26">FY 2025/26</option>
+                <option value="2024/25">FY 2024/25</option>
+            </select>
+        </div>
+        <div style="width: 1px; height: 20px; background: rgba(255,255,255,0.2);"></div>
+        <div class="results-filter__item">
+            <select id="filter-format" class="results-filter__select">
+                <option value="all">Format</option>
+                <option value="PDF">PDF</option>
+                <option value="VIDEO">Video</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="results-list-container">
+        
+        <!-- FY 2025/26 -->
+        <div class="results-year-group" data-year="2025/26">
+            <h2 class="results-year-title">FY 2025/26</h2>
+            <div class="results-list">
+                
+                <div class="result-item">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q2 FY2025/26 as at 31 December 2025</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">PDF</div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q1 FY25/26 as at 30 September 2025</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">PDF</div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FY 2024/25 -->
+        <div class="results-year-group" data-year="2024/25">
+            <h2 class="results-year-title">FY 2024/25</h2>
+            <div class="results-list">
+                
+                <div class="result-item">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q4 FY24/25 as at 30 June 2025</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">PDF</div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q3 FY24/25 as at 30 March 2025</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">PDF</div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-item result-item--video">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q2 FY24/25 as at 30 December 2024</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">VIDEO <span>&middot; 43:05</span></div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Watch video <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polygon points="10 8 16 12 10 16 10 8"></polygon></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="result-item">
+                    <div class="result-item__title">
+                        <h3>Factsheet: Q1 FY2025/25 as at 31 September 2024</h3>
+                    </div>
+                    
+                    <div class="result-item__meta">
+                        <div class="result-item__type">FACTSHEET</div>
+                        <div class="result-item__date">Updated 28 mar 2026</div>
+                        <div class="result-item__filetype">PDF</div>
+                        <div class="result-item__download-col">
+                            <a href="#" class="result-item__download">
+                                Open document <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line></svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

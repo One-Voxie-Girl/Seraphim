@@ -219,6 +219,28 @@ add_filter('acf/load_field/name=document_type', function($field) {
     return $field;
 });
 
+/**
+ * Populate result_type select field from result-type taxonomy
+ */
+add_filter('acf/load_field/name=result_type', function($field) {
+    $field['choices'] = [
+        'all' => 'All'
+    ];
+
+    $terms = get_terms([
+        'taxonomy' => 'result-type',
+        'hide_empty' => false,
+    ]);
+
+    if (!is_wp_error($terms) && !empty($terms)) {
+        foreach ($terms as $term) {
+            $field['choices'][$term->slug] = $term->name;
+        }
+    }
+
+    return $field;
+});
+
 add_action('wp_enqueue_scripts', function() {
   wp_dequeue_script('bootstrap');
   wp_deregister_script('bootstrap');
@@ -227,3 +249,94 @@ add_action('wp_enqueue_scripts', function() {
 
 
 
+
+/**
+ * AJAX Insights Search
+ */
+add_action('wp_ajax_search_insights', 'seraphim_search_insights');
+add_action('wp_ajax_nopriv_search_insights', 'seraphim_search_insights');
+function seraphim_search_insights() {
+    $s = isset($_GET['s']) ? sanitize_text_field($_GET['s']) : '';
+    $filter = isset($_GET['filter']) ? sanitize_text_field($_GET['filter']) : '';
+    
+    $args = array(
+        'post_type'      => 'insight',
+        'posts_per_page' => -1,
+        's'              => $s,
+        'orderby'        => 'relevance'
+    );
+
+    if ( ! empty( $filter ) ) {
+        $term = get_term_by('name', $filter, 'insight-type');
+        if ($term) {
+            $args['tax_query'] = array(
+                array(
+                    'taxonomy' => 'insight-type',
+                    'field'    => 'term_id',
+                    'terms'    => $term->term_id,
+                ),
+            );
+        } else {
+            // Fallback to searching for the term by slug if name match fails
+            $term = get_term_by('slug', sanitize_title($filter), 'insight-type');
+            if ($term) {
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'insight-type',
+                        'field'    => 'term_id',
+                        'terms'    => $term->term_id,
+                    ),
+                );
+            } else {
+                // Last resort: exact name match in query
+                $args['tax_query'] = array(
+                    array(
+                        'taxonomy' => 'insight-type',
+                        'field'    => 'name',
+                        'terms'    => $filter,
+                    ),
+                );
+            }
+        }
+    }
+    
+    $query = new WP_Query($args);
+    
+    if ($query->have_posts()) {
+        while ($query->have_posts()) {
+            $query->the_post();
+            
+            $insight_types = get_the_terms(get_the_ID(), 'insight-type');
+            $type_names = [];
+            if (!is_wp_error($insight_types) && !empty($insight_types)) {
+                foreach ($insight_types as $term) {
+                    $type_names[] = $term->name;
+                }
+            }
+            $thumbnail_url = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: '';
+            ?>
+            <div class="col-12 col-md-6 col-lg-4">
+                <a href="<?php the_permalink(); ?>" class="contentCard contentCard--grid">
+                     <div class="activeCorners gradientCorners">
+                        <div class="top"></div>
+                        <div class="bottom"></div>
+                    </div>
+                    <div class="contentCard__image" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
+                    <div class="contentCard__meta">
+                        <?php if (!empty($type_names)) : ?>
+                            <span class="caption"><?php echo esc_html(implode(', ', $type_names)); ?></span>
+                        <?php endif; ?>
+                        <span class="caption"><?php echo get_the_date('d M Y'); ?></span>
+                    </div>
+                    <h4><?php the_title(); ?></h4>
+                </a>
+            </div>
+            <?php
+        }
+        wp_reset_postdata();
+    } else {
+        echo '<div class="col-12 text-center py-5"><p>No insights found matching your search.</p></div>';
+    }
+    
+    wp_die();
+}

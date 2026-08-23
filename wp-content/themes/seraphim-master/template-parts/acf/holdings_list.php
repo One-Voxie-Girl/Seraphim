@@ -3,6 +3,15 @@
  * Holdings List ACF Component
  */
 
+
+/*TODO
+ * get javascript for dropdown menus working
+ * get company logos overlaid on image in card view
+ * fix visuals on web link for both views
+ * add filtering for c-shares and vc
+ *
+*/
+
 if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
@@ -23,55 +32,58 @@ $all_countries  = get_terms( array( 'taxonomy' => 'country', 'hide_empty' => tru
 if ( $query->have_posts() ) :
     $total_companies = $query->found_posts;
     $countries_count = count( $all_countries );
-    // Note: portfolio_value and ipos_count would ideally come from ACF fields on a settings page or be calculated.
-    // For now, using placeholders or simple counts if possible.
-    $portfolio_value = get_field('portfolio_value', 'option') ?: '332M';
-    $ipos_count = get_field('ipos_count', 'option') ?: '3';
+
     ?>
+
+
+
     <div class="holdings-list-container container" id="holdings-container">
-        
         <div class="portfolioFilterBar">
             <div class="portfolioFilters">
-                <div class="portfolioFilterDropdown">
+                <div class="portfolioFilterDropdown" id="dropdown-sector">
                     <button class="portfolioFilterToggle" type="button" aria-expanded="false">
                         Sector <i class="ci-Caret_Down_SM"></i>
                     </button>
                     <div class="portfolioFilterMenu">
-                        <button type="button" data-filter="" data-taxonomy="sector"><i class="ci-Chevron_Right"></i>All</button>
+                        <button type="button" data-value=""><i class="ci-Chevron_Right"></i>All</button>
                         <?php foreach ( $all_sectors as $term ) : ?>
-                            <button type="button" data-filter="<?php echo esc_attr( $term->slug ); ?>" data-taxonomy="sector"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
+                            <button type="button" data-value="<?php echo esc_attr( $term->slug ); ?>"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
-                <div class="portfolioFilterDropdown">
+                <div class="portfolioFilterDropdown" id="dropdown-category">
                     <button class="portfolioFilterToggle" type="button" aria-expanded="false">
                         Category <i class="ci-Caret_Down_SM"></i>
                     </button>
                     <div class="portfolioFilterMenu">
-                        <button type="button" data-filter="" data-taxonomy="category"><i class="ci-Chevron_Right"></i>All</button>
+                        <button type="button" data-value=""><i class="ci-Chevron_Right"></i>All</button>
                         <?php foreach ( $all_categories as $term ) : ?>
-                            <button type="button" data-filter="<?php echo esc_attr( $term->slug ); ?>" data-taxonomy="category"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
+                            <button type="button" data-value="<?php echo esc_attr( $term->slug ); ?>"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
                         <?php endforeach; ?>
                     </div>
                 </div>
 
-                <div class="portfolioFilterDropdown">
+                <div class="portfolioFilterDropdown" id="dropdown-country">
                     <button class="portfolioFilterToggle" type="button" aria-expanded="false">
                         Location <i class="ci-Caret_Down_SM"></i>
                     </button>
                     <div class="portfolioFilterMenu">
-                        <button type="button" data-filter="" data-taxonomy="country"><i class="ci-Chevron_Right"></i>All</button>
+                        <button type="button" data-value=""><i class="ci-Chevron_Right"></i>All</button>
                         <?php foreach ( $all_countries as $term ) : ?>
-                            <button type="button" data-filter="<?php echo esc_attr( $term->slug ); ?>" data-taxonomy="country"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
+                            <button type="button" data-value="<?php echo esc_attr( $term->slug ); ?>"><i class="ci-Chevron_Right"></i><?php echo esc_html( $term->name ); ?></button>
                         <?php endforeach; ?>
                     </div>
                 </div>
             </div>
 
             <div class="portfolioViewToggle" aria-label="View options">
-                <button type="button" class="active" aria-label="Grid view" aria-pressed="true" data-portfolio-view="grid"><i class="ci-More_Grid_Big"></i></button>
-                <button type="button" aria-label="List view" aria-pressed="false" data-portfolio-view="list"><i class="ci-List_Unordered"></i></button>
+                <button type="button" class="view-btn active" data-portfolio-view="grid" aria-label="Grid view" aria-pressed="true">
+                    <i class="ci-More_Grid_Big"></i>
+                </button>
+                <button type="button" class="view-btn" data-portfolio-view="list" aria-label="List view" aria-pressed="false">
+                    <i class="ci-List_Unordered"></i>
+                </button>
             </div>
         </div>
 
@@ -81,15 +93,16 @@ if ( $query->have_posts() ) :
                 <span>Sector</span>
                 <span>Category</span>
                 <span>Location</span>
-                <span>% of assets</span>
+                <span>Assets %</span>
             </div>
 
             <?php while ( $query->have_posts() ) : $query->the_post();
-                $tagline = get_field( 'tagline' );
+                $tagline = get_field( 'preview_text' );
                 $logo    = get_field( 'logo' );
                 $assets_pct = get_field( 'assets_percentage' ) ?: '0';
                 $is_ipo = get_field( 'ipo_status' ); // true false radio button or 'yes'
                 $is_top_holding = get_field( 'top_holding' ); // true false radio button
+                $company_percentage = get_field( 'company_percentage' ) ?: '0';
 
 
                 $sectors    = get_the_terms( get_the_ID(), 'company-sector' );
@@ -98,11 +111,23 @@ if ( $query->have_posts() ) :
 
                 $sector_name   = ( ! is_wp_error( $sectors ) && ! empty( $sectors ) ) ? $sectors[0]->name : '';
                 $sector_slug   = ( ! is_wp_error( $sectors ) && ! empty( $sectors ) ) ? $sectors[0]->slug : '';
+                $sector_parent_slug = '';
+                if ( ! is_wp_error( $sectors ) && ! empty( $sectors ) && $sectors[0]->parent ) {
+                    $parent_s = get_term( $sectors[0]->parent, 'company-sector' );
+                    if ( ! is_wp_error( $parent_s ) && ! empty( $parent_s ) ) $sector_parent_slug = $parent_s->slug;
+                }
+
                 $category_name = ( ! is_wp_error( $categories ) && ! empty( $categories ) ) ? $categories[0]->name : '';
                 $category_slug = ( ! is_wp_error( $categories ) && ! empty( $categories ) ) ? $categories[0]->slug : '';
+                $category_parent_slug = '';
+                if ( ! is_wp_error( $categories ) && ! empty( $categories ) && $categories[0]->parent ) {
+                    $parent_c = get_term( $categories[0]->parent, 'company-category' );
+                    if ( ! is_wp_error( $parent_c ) && ! empty( $parent_c ) ) $category_parent_slug = $parent_c->slug;
+                }
                 
                 $country_name = '';
                 $country_slug = '';
+                $country_parent_slug = ''; // Add parent slug for filtering
                 if ( ! is_wp_error( $countries ) && ! empty( $countries ) ) {
                     $country_term = $countries[0];
                     $country_name = $country_term->name;
@@ -112,7 +137,7 @@ if ( $query->have_posts() ) :
                         $parent_term = get_term( $country_term->parent, 'country' );
                         if ( ! is_wp_error( $parent_term ) && ! empty( $parent_term ) ) {
                             $country_name = $parent_term->name . ' - ' . $country_name;
-                            // Add parent slug for filtering if needed, but let's see if we should just use names or slugs consistently
+                            $country_parent_slug = $parent_term->slug;
                         }
                     }
                 }
@@ -120,10 +145,13 @@ if ( $query->have_posts() ) :
                 $background_image = get_field( 'background_image' );
                 $card_img_url     = ( ! empty( $background_image ) && is_array( $background_image ) ) ? $background_image['url'] : get_the_post_thumbnail_url( get_the_ID(), 'large' );
                 ?>
-                <div class="notch-card portfolioHoldingCard holding-item" 
+                <a href="<?php the_permalink(); ?>" class="notch-card portfolioHoldingCard holding-item<?php echo ( $is_top_holding == 'true' ) ? ' is-top-holding' : ''; ?>"
                      data-sector="<?php echo esc_attr( $sector_slug ); ?>" 
+                     data-sector-parent="<?php echo esc_attr( $sector_parent_slug ); ?>"
                      data-category="<?php echo esc_attr( $category_slug ); ?>" 
+                     data-category-parent="<?php echo esc_attr( $category_parent_slug ); ?>"
                      data-country="<?php echo esc_attr( $country_slug ); ?>"
+                     data-country-parent="<?php echo esc_attr( $country_parent_slug ); ?>"
                      data-assets="<?php echo esc_attr( $assets_pct ); ?>%">
                     
                     <span class="notch-card__tab" aria-hidden="true"></span>
@@ -148,8 +176,9 @@ if ( $query->have_posts() ) :
 
                     <div class="contentCon">
                         <h4 class="title small"><?php the_title(); ?></h4>
+                        
                         <?php if ( $tagline ) : ?>
-                            <span class="white65"><?php echo esc_html( wp_trim_words( $tagline, 20 ) ); ?></span>
+                            <div class="tagline white65 small"><?php echo esc_html($tagline ); ?></div>
                         <?php endif; ?>
                     </div>
 
@@ -159,11 +188,14 @@ if ( $query->have_posts() ) :
                                 <span class="caption"><?php echo esc_html( $sector_name ); ?></span>
                             <?php endif; ?>
                             <?php if ( $category_name ) : ?>
-                                <span class="caption"><?php echo esc_html( $category_name ); ?></span>
+                                <span class="caption"><?php echo esc_html( $category_name ); ?> </span>
+                            <?php endif; ?>
+                            <?php if ( $assets_pct ) : ?>
+                                <span class="caption"><?php echo esc_html( $assets_pct ); ?>%</span>
                             <?php endif; ?>
                         </div>
                         <div class="buttonCon">
-                            <a href="<?php the_permalink(); ?>" class="tertiary small">Learn more</a>
+                            <span class="tertiary small">Learn more</span>
                         </div>
                     </div>
 
@@ -173,137 +205,136 @@ if ( $query->have_posts() ) :
                         <span><?php echo esc_html( $country_name ); ?></span>
                         <span><?php echo esc_html( $assets_pct ); ?>%</span>
                     </div>
-                </div>
+                </a>
             <?php endwhile; wp_reset_postdata(); ?>
         </div>
     </div>
 
     <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const holdingsContainer = document.getElementById('holdings-container');
-        if (holdingsContainer) {
-            const portfolioGrid = holdingsContainer.querySelector('.portfolioGrid');
-            const viewToggleBtns = holdingsContainer.querySelectorAll('.portfolioViewToggle button');
-            const filterToggles = holdingsContainer.querySelectorAll('.portfolioFilterToggle');
-            const filterMenus = holdingsContainer.querySelectorAll('.portfolioFilterMenu');
-            const items = holdingsContainer.querySelectorAll('.holding-item');
+        (function() {
+            // PORTFOLIO FILTERS
+            function initPortfolioFilters() {
+                var filterBar = document.querySelector('.portfolioFilters');
+                if (!filterBar) return;
 
-            let activeFilters = {
-                sector: '',
-                category: '',
-                country: ''
-            };
+                var dropdowns = Array.prototype.slice.call(filterBar.querySelectorAll('.portfolioFilterDropdown'));
 
-            // Dropdown Toggles
-            filterToggles.forEach(toggle => {
-                toggle.addEventListener('click', function(e) {
-                    const dropdown = this.closest('.portfolioFilterDropdown');
-                    const isOpen = dropdown.classList.contains('is-open');
-                    
-                    // Close all other dropdowns
-                    holdingsContainer.querySelectorAll('.portfolioFilterDropdown').forEach(d => {
-                        if (d !== dropdown) {
-                            d.classList.remove('is-open');
-                            const otherToggle = d.querySelector('.portfolioFilterToggle');
-                            if (otherToggle) otherToggle.setAttribute('aria-expanded', 'false');
-                        }
-                    });
-
-                    dropdown.classList.toggle('is-open', !isOpen);
-                    this.setAttribute('aria-expanded', !isOpen ? 'true' : 'false');
-                    e.stopPropagation();
-                });
-            });
-
-            // Close dropdowns on outside click
-            document.addEventListener('click', function(event) {
-                const filterBar = holdingsContainer.querySelector('.portfolioFilters');
-                if (filterBar && !filterBar.contains(event.target)) {
-                    holdingsContainer.querySelectorAll('.portfolioFilterDropdown').forEach(dropdown => {
+                var closeDropdowns = function (currentDropdown) {
+                    dropdowns.forEach(function (dropdown) {
+                        if (dropdown === currentDropdown) return;
                         dropdown.classList.remove('is-open');
-                        const toggle = dropdown.querySelector('.portfolioFilterToggle');
+                        var toggle = dropdown.querySelector('.portfolioFilterToggle');
                         if (toggle) toggle.setAttribute('aria-expanded', 'false');
                     });
-                }
-            });
+                };
 
-            // Filter Selection
-            holdingsContainer.querySelectorAll('.portfolioFilterMenu button').forEach(btn => {
-                btn.addEventListener('click', function(e) {
-                    const taxonomy = this.getAttribute('data-taxonomy');
-                    const value = this.getAttribute('data-filter');
-                    const label = this.textContent.trim();
+                dropdowns.forEach(function (dropdown) {
+                    var toggle = dropdown.querySelector('.portfolioFilterToggle');
+                    var menuOptions = dropdown.querySelectorAll('.portfolioFilterMenu button');
+                    if (!toggle) return;
 
-                    activeFilters[taxonomy] = value;
-
-                    // Update toggle button text
-                    const dropdown = this.closest('.portfolioFilterDropdown');
-                    const toggle = dropdown.querySelector('.portfolioFilterToggle');
-                    const icon = toggle.querySelector('i');
-                    
-                    const defaultText = taxonomy.charAt(0).toUpperCase() + taxonomy.slice(1);
-                    const displayText = value ? label : (taxonomy === 'country' ? 'Location' : defaultText);
-                    
-                    toggle.textContent = displayText + ' ';
-                    if (icon) toggle.appendChild(icon);
-
-                    applyFilters();
-                    
-                    // Close menu
-                    dropdown.classList.remove('is-open');
-                    toggle.setAttribute('aria-expanded', 'false');
-                    e.stopPropagation();
-                });
-            });
-
-            // View Switcher
-            viewToggleBtns.forEach(btn => {
-                btn.addEventListener('click', function() {
-                    const view = this.getAttribute('data-portfolio-view');
-                    
-                    viewToggleBtns.forEach(b => {
-                        b.classList.remove('active');
-                        b.setAttribute('aria-pressed', 'false');
+                    toggle.addEventListener('click', function (e) {
+                        e.stopPropagation();
+                        var shouldOpen = !dropdown.classList.contains('is-open');
+                        closeDropdowns(dropdown);
+                        dropdown.classList.toggle('is-open', shouldOpen);
+                        toggle.setAttribute('aria-expanded', shouldOpen ? 'true' : 'false');
                     });
-                    
-                    this.classList.add('active');
-                    this.setAttribute('aria-pressed', 'true');
-                    
-                    portfolioGrid.classList.add('is-view-switching');
-                    
-                    setTimeout(() => {
-                        if (view === 'list') {
-                            portfolioGrid.classList.add('is-list');
-                        } else {
-                            portfolioGrid.classList.remove('is-list');
-                        }
-                        
-                        setTimeout(() => {
-                            portfolioGrid.classList.remove('is-view-switching');
-                        }, 50);
-                    }, 250);
+
+                    menuOptions.forEach(function (option) {
+                        option.addEventListener('click', function () {
+                            var icon = toggle.querySelector('i');
+                            var selectedText = option.textContent.trim();
+                            var filterValue = option.getAttribute('data-value');
+
+                            toggle.setAttribute('data-active-value', filterValue);
+                            toggle.textContent = selectedText + ' ';
+                            if (icon) toggle.appendChild(icon);
+                            dropdown.classList.remove('is-open');
+                            toggle.setAttribute('aria-expanded', 'false');
+
+                            filterItems();
+                        });
+                    });
                 });
-            });
 
-            function applyFilters() {
-                items.forEach(item => {
-                    const itemSector = item.getAttribute('data-sector');
-                    const itemCategory = item.getAttribute('data-category');
-                    const itemCountry = item.getAttribute('data-country');
+                document.addEventListener('click', function (event) {
+                    if (!filterBar.contains(event.target)) closeDropdowns();
+                });
 
-                    const sectorMatch = !activeFilters.sector || itemSector === activeFilters.sector;
-                    const categoryMatch = !activeFilters.category || itemCategory === activeFilters.category;
-                    const countryMatch = !activeFilters.country || itemCountry === activeFilters.country;
+                document.addEventListener('keydown', function (event) {
+                    if (event.key === 'Escape') closeDropdowns();
+                });
 
-                    if (sectorMatch && categoryMatch && countryMatch) {
-                        item.style.display = '';
-                    } else {
-                        item.style.display = 'none';
-                    }
+                function filterItems() {
+                    var activeSector = document.querySelector('#dropdown-sector .portfolioFilterToggle').getAttribute('data-active-value') || '';
+                    var activeCategory = document.querySelector('#dropdown-category .portfolioFilterToggle').getAttribute('data-active-value') || '';
+                    var activeCountry = document.querySelector('#dropdown-country .portfolioFilterToggle').getAttribute('data-active-value') || '';
+
+                    var cards = document.querySelectorAll('.notch-card');
+                    cards.forEach(function(card) {
+                        var sector = card.getAttribute('data-sector') || '';
+                        var sectorParent = card.getAttribute('data-sector-parent') || '';
+                        var category = card.getAttribute('data-category') || '';
+                        var categoryParent = card.getAttribute('data-category-parent') || '';
+                        var country = card.getAttribute('data-country') || '';
+                        var countryParent = card.getAttribute('data-country-parent') || '';
+
+                        var sectorMatch = !activeSector || sector === activeSector || sectorParent === activeSector;
+                        var categoryMatch = !activeCategory || category === activeCategory || categoryParent === activeCategory;
+                        var countryMatch = !activeCountry || country === activeCountry || countryParent === activeCountry;
+
+                        if (sectorMatch && categoryMatch && countryMatch) {
+                            card.style.display = '';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                }
+            }
+
+            // PORTFOLIO VIEW TOGGLE
+            function initPortfolioViewToggle() {
+                var viewToggle = document.querySelector('.portfolioViewToggle');
+                var portfolioGrid = document.querySelector('.portfolioGrid');
+                if (!viewToggle || !portfolioGrid) return;
+
+                var buttons = Array.prototype.slice.call(viewToggle.querySelectorAll('[data-portfolio-view]'));
+
+                buttons.forEach(function (button) {
+                    button.addEventListener('click', function () {
+                        var selectedView = button.getAttribute('data-portfolio-view');
+                        var isListView = selectedView === 'list';
+
+                        portfolioGrid.classList.add('is-view-switching');
+                        portfolioGrid.classList.toggle('is-list', isListView);
+
+                        buttons.forEach(function (toggleButton) {
+                            var isActive = toggleButton === button;
+                            toggleButton.classList.toggle('active', isActive);
+                            toggleButton.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+                        });
+
+                        window.requestAnimationFrame(function () {
+                            window.requestAnimationFrame(function () {
+                                portfolioGrid.classList.remove('is-view-switching');
+                            });
+                        });
+                    });
                 });
             }
-        }
-    });
+
+            // Initialize
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', function() {
+                    initPortfolioFilters();
+                    initPortfolioViewToggle();
+                });
+            } else {
+                initPortfolioFilters();
+                initPortfolioViewToggle();
+            }
+        })();
     </script>
 <?php else : ?>
     <div class="container py-5">

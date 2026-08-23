@@ -3,6 +3,12 @@ if (!defined('ABSPATH')) {
     exit; // Exit if accessed directly.
 }
 
+/*TODO
+ * add title with info popout
+ * alter graph thickness
+*/
+
+
 // Get ACF sub-fields
 $data_type = get_sub_field('data_type'); // "true" for percentage, "false" for absolute
 $graph_data_raw = get_sub_field('graph_data');

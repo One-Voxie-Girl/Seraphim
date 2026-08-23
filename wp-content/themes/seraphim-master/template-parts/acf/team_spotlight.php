@@ -7,6 +7,13 @@ if ( ! defined( 'ABSPATH' ) ) {
     exit; // Exit if accessed directly.
 }
 
+/*TODO
+ * fix so that image is not cropped
+ * fix image for linkedin button
+*/
+
+
+
 $team_member_id = get_sub_field('team_member');
 
 if ( $team_member_id ) :

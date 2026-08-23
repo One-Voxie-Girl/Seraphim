@@ -43,31 +43,21 @@ $query = new WP_Query( $args );
                     }
                     $thumbnail_url = get_the_post_thumbnail_url( get_the_ID(), 'large' ) ?: '';
                     ?>
-                    <div class="col-12 col-md-6 col-lg-4 insight-card-wrapper">
-                        <div class="insight-card h-100 border rounded shadow-sm overflow-hidden d-flex flex-column">
-                            <?php if ( $thumbnail_url ) : ?>
-                                <div class="insight-card__image" style="height: 200px; background-image: url('<?php echo esc_url( $thumbnail_url ); ?>'); background-size: cover; background-position: center;"></div>
-                            <?php endif; ?>
-                            <div class="insight-card__content p-4 d-flex flex-column flex-grow-1">
-                                <div class="insight-card__meta mb-2 text-muted small">
-                                    <?php if ( !empty($type_names) ) : ?>
-                                        <span class="badge bg-secondary me-2"><?php echo esc_html( implode(', ', $type_names) ); ?></span>
-                                    <?php endif; ?>
-                                    <span><?php echo get_the_date( 'd M Y' ); ?></span>
-                                </div>
-                                <h3 class="h5 insight-card__title mb-3">
-                                    <a href="<?php the_permalink(); ?>" class="text-decoration-none text-dark">
-                                        <?php the_title(); ?>
-                                    </a>
-                                </h3>
-                                <div class="insight-card__excerpt mb-4">
-                                    <?php echo wp_trim_words( get_the_excerpt(), 20 ); ?>
-                                </div>
-                                <div class="mt-auto">
-                                    <a href="<?php the_permalink(); ?>" class="btn btn-outline-primary btn-sm">Read More</a>
-                                </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <a href="<?php the_permalink(); ?>" class="contentCard contentCard--grid">
+                            <div class="activeCorners gradientCorners">
+                                <div class="top"></div>
+                                <div class="bottom"></div>
                             </div>
-                        </div>
+                            <div class="contentCard__image" style="background-image: url('<?php echo esc_url($thumbnail_url); ?>');"></div>
+                            <div class="contentCard__meta">
+                                <?php if (!empty($type_names)) : ?>
+                                    <span class="caption"><?php echo esc_html(implode(', ', $type_names)); ?></span>
+                                <?php endif; ?>
+                                <span class="caption"><?php echo get_the_date('d M Y'); ?></span>
+                            </div>
+                            <h4><?php the_title(); ?></h4>
+                        </a>
                     </div>
                 <?php endwhile; wp_reset_postdata(); ?>
             </div>

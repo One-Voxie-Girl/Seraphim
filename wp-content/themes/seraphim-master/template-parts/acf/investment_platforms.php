@@ -3,6 +3,12 @@
  * ACF Template Part: Investment Platforms
  */
 
+
+/*TODO
+ * FIx logo size/position
+ * title should be to right of logo
+ * link should be separate below
+ *  */
 $selected_platforms = get_sub_field('platforms_checklist');
 $all_platforms = get_field('investment_platform', 'option');
 
