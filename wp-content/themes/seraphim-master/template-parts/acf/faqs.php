@@ -1,56 +1,155 @@
 <?php
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly.
-}	
+    exit; // Exit if accessed directly.
+}
 
+/*
+ *
+ *
+ * */
 ?>
-          
-          
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+<style>
+
+    .faqsSection {
+        padding: 80px 0;
+    }
+
+    .faqsTitle h2 {
+        font-family: "Osiris", sans-serif;
+        font-size: 4rem;
+        text-transform: uppercase;
+        line-height: 1;
+        margin-bottom: 0;
+    }
+
+    .faqList {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .faqCard {
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 12px;
+        padding: 30px;
+        background: rgba(14, 20, 32, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .faqCard.active {
+        background: rgba(14, 20, 32, 0.8);
+        border-color: rgba(0, 170, 80, 0.3); /* $terrain300 */
+    }
+
+    /* The green side border in the image */
+    .faqCard.active::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 2px;
+        background: #00AA50; /* $terrain300 */
+    }
+
+    .faqCard__header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .faqCard__header h4 {
+        margin: 0;
+        font-weight: 400;
+        font-size: 1.25rem;
+    }
+
+    .faqCard__icon {
+        font-size: 1.5rem;
+        color: rgba(255, 255, 255, 0.5);
+        transition: transform 0.3s ease;
+    }
+
+    .faqCard.active .faqCard__icon {
+        transform: rotate(45deg); /* Plus becomes X */
+        color: #00AA50;
+    }
+
+    .faqCard__content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+
+    .faqCard.active .faqCard__content {
+        max-height: 1000px;
+    }
+
+    .faqCard__inner {
+        margin-top: 25px;
+        padding-top: 25px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faqCard__inner p {
+        color: #A6A7AB; /* $white65 */
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .faqCard__link {
+        color: #00AA50;
+        text-decoration: underline;
+        font-size: 0.9rem;
+    }
+</style>
+
 
 <?php if (have_rows('faqs')) : ?>
-  <section class="mucFaqsSection">
-
-    <div class="faq-list">
-      <?php $i = 0; while (have_rows('faqs')) : the_row(); $i++; ?>
-        <div class="faq-item" data-index="<?php echo $i; ?>">
-          <button class="faq-question" aria-expanded="false">
-            <span><?php the_sub_field('question'); ?></span>
-            <svg class="faq-toggle" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M12 5v14M5 12h14"/>
-            </svg>
-          </button>
-          <div class="faq-answer">
-            <div class="inner">
-              <?php the_sub_field('answer'); ?>
+    <div class="container faqsSection">
+        <div class="row">
+            <div class="col-12 col-lg-5 faqsTitle">
+                <h2>FREQUENTLY</h2>
+                <h2>ASKED QUESTIONS</h2>
             </div>
-          </div>
-        </div>
-      <?php endwhile; ?>
-    </div>
+            <div class="col-12 col-lg-7">
+                <div class="faqList">
+                    <?php $i = 0; while (have_rows('faqs')) : the_row(); $i++; ?>
 
-  </section>
+
+                        <div class="faqCard">
+                            <div class="faqCard__header" data-index="<?php echo $i; ?>">
+                                <h4><?php the_sub_field('question'); ?></h4>
+                                <div class="faqCard__icon">+</div>
+                            </div>
+                            <div class="faqCard__content">
+                                <div class="faqCard__inner">
+                                    <p><?php the_sub_field('answer'); ?></p>
+                                    <a href="<?php the_sub_field('link_url'); ?>"><?php the_sub_field('link'); ?></a>
+                                </div>
+                            </div>
+                        </div>
+
+                    <?php endwhile; ?>
+                </div>
+            </div>
+        </div>
+    </div>
 <?php endif; ?>
 
-
 <script>
- 
- document.addEventListener("DOMContentLoaded", () => {
-  const faqs = document.querySelectorAll(".faq-item");
+    $(document).ready(function() {
+        $('.faqCard').on('click', function() {
+            $(this).toggleClass('active');
 
-  faqs.forEach(faq => {
-    const btn = faq.querySelector(".faq-question");
-
-    btn.addEventListener("click", () => {
-      const isActive = faq.classList.contains("active");
-
-      // Close all
-      faqs.forEach(f => f.classList.remove("active"));
-
-      // Reopen if it was closed
-      if (!isActive) faq.classList.add("active");
+            // Optional: Close other cards when one is opened
+            // $('.faqCard').not(this).removeClass('active');
+        });
     });
-  });
-});
-
-
 </script>
+

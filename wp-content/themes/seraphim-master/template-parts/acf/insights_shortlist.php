@@ -71,6 +71,16 @@ if ( $insight_type && $insight_type !== 'all' ) {
             $has_intro  = ( $is_podcast || $is_news ) && ( $podcast_title || $news_title );
             ?>
             <?php /* Vertical with Left Spotlight (News Feed Style) */ ?>
+
+            <div class="row">
+                <div class="col-12 insightSectionDivide">
+                    <div class="insightTitleLink">
+                        <h3><?php echo esc_html( $title ); ?></h3>
+                        <a href="<?php echo get_post_type_archive_link( 'insight' ); ?>">View all</a>
+                    </div>
+                </div>
+            </div>
+
             <div class="newsFeedCon splitFeedCon <?php echo $is_podcast ? 'podcastFeedCon' : ''; ?> <?php echo $is_news ? 'newsSplitFeedCon' : ''; ?> <?php echo ! $has_intro ? 'latestSplitFeedCon' : ''; ?>">
                 
                 <?php if ( $has_intro ) : ?>
@@ -140,8 +150,7 @@ if ( $insight_type && $insight_type !== 'all' ) {
                                 </div>
                             <?php endif; ?>
                         </div>
-                    <?php elseif ( isset( $insights[0] ) ) : 
-                        global $post;
+                    <?php elseif ( isset( $insights[0] ) ) :
                         $post = $insights[0];
                         setup_postdata( $post );
                         $thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'large' );
@@ -173,8 +182,7 @@ if ( $insight_type && $insight_type !== 'all' ) {
                         <div class="contentList splitFeedList <?php echo $is_podcast ? 'podcastEpisodeList' : ''; ?>">
                             <?php 
                             $start_index = $has_intro ? 0 : 1;
-                            for ( $i = $start_index; $i < $total; $i ++ ) : 
-                                global $post;
+                            for ( $i = $start_index; $i < $total; $i ++ ) :
                                 $post = $insights[ $i ];
                                 setup_postdata( $post );
                                 $thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'medium' );
@@ -220,8 +228,7 @@ if ( $insight_type && $insight_type !== 'all' ) {
             <div class="row">
                 <div class="col-12 ">
                     <div class="contentList">
-                        <?php foreach ( $insights as $post ) : 
-                            global $post;
+                        <?php foreach ( $insights as $post ) :
                             setup_postdata( $post );
                             $thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'medium' );
                             $terms = get_the_terms( $post->ID, 'insight-type' );
@@ -262,8 +269,7 @@ if ( $insight_type && $insight_type !== 'all' ) {
                 </div>
             </div>
             <div class="row">
-                <?php foreach ( $insights as $post ) : 
-                    global $post;
+                <?php foreach ( $insights as $post ) :
                     setup_postdata( $post );
                     $thumbnail_url = get_the_post_thumbnail_url( $post->ID, 'large' );
                     $terms = get_the_terms( $post->ID, 'insight-type' );

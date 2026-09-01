@@ -3360,6 +3360,106 @@ body.mobile-menu-open {
 
 // Newsletter
 
+.faqsSection {
+    padding: 100px 0;
+    .faqsTitle {
+        h2 {
+            @include headline-font;
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 0;
+        }
+    }
+
+    .faqList {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .faqCard {
+        border: 1px solid rgba($white, 0.1);
+        border-radius: 12px;
+        padding: 30px;
+        background: rgba($black5, 0.5);
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+
+        &.active {
+            background: rgba($black5, 0.8);
+            border-color: rgba($terrain300, 0.3);
+
+            &::before {
+                content: '';
+                position: absolute;
+                left: 0;
+                top: 0;
+                bottom: 0;
+                width: 2px;
+                background: $terrain300;
+            }
+
+            .faqCard__icon {
+                transform: rotate(45deg);
+                color: $terrain300;
+            }
+
+            .faqCard__content {
+                max-height: 1000px;
+            }
+        }
+
+        &__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            h4 {
+                margin: 0;
+                font-weight: 400;
+                font-size: 1.25rem;
+            }
+        }
+
+        &__icon {
+            font-size: 1.5rem;
+            color: rgba($white, 0.5);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        &__content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, margin-top 0.3s ease;
+        }
+
+        &__inner {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba($white, 0.1);
+
+            p {
+                color: $white65;
+                line-height: 1.6;
+                margin-bottom: 20px;
+            }
+        }
+
+        &__link {
+            color: $terrain300;
+            text-decoration: underline;
+            font-size: 0.9rem;
+            
+            &:hover {
+                color: $white;
+            }
+        }
+    }
+}
+
 .newsletterCon {
     background:
         linear-gradient(90deg, rgba($black, 0.92) 0%, rgba($black, 0.74) 48%, rgba($black, 0.15) 100%),
