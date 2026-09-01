@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Industry Globe Mock</title>
+    <style>
+        :root {
+            --bg-color: #020714;
+            --text-color: #FFFFFF;
+            --text-muted: #A6A7AB;
+            --border-color: rgba(255, 255, 255, 0.2);
+            --accent-color: #00AA50;
+            --font-main: "Neuro", sans-serif;
+            --font-heading: "Osiris", sans-serif;
+        }
+
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: var(--font-main);
+            overflow-x: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .industry-globe-section {
+            width: 100%;
+            max-width: 1440px;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: 3rem;
+            text-transform: uppercase;
+            margin-bottom: 60px;
+            letter-spacing: 2px;
+            line-height: 1.1;
+        }
+
+        .globe-container {
+            position: relative;
+            height: 400px;
+            margin: 0 auto;
+            max-width: 1000px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end; /* Align to bottom since we only want top half */
+        }
+
+
+        .labels-container {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            bottom: 0;
+            left: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* Center labels at the bottom center of container */
+            pointer-events: none;
+        }
+
+        .industry-label {
+            position: absolute;
+            display: inline-block;
+            cursor: pointer;
+            z-index: 10;
+            pointer-events: auto;
+            
+            /* Programmatic Positioning using Transforms */
+            /* 
+               We want to map --i from [0, --total] to the top half.
+               Full circle is 360deg. Top half is -90deg to 90deg.
+               --angle = -90deg + (180deg * --i / (--total - 1))
+            */
+            --radius: 70vw;
+            --angle: calc(-120deg + (60deg * var(--i) / (var(--total) - 1)));
+            transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle))) translateY(var(--radius));
+        }
+
+        .industry-label.inner-ring {
+            --radius: 70vw;
+            --angle: calc(-110deg + (40deg * var(--i) / (var(--total) - 1)));
+            transform: rotate(var(--angle)) translate(var(--radius)) rotate(calc(-1 * var(--angle))) translateY(calc(var(--radius) + 100px) );
+        }
+
+        .label-pill {
+            background: rgba(2, 7, 20, 0.8);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--border-color);
+            padding: 8px 16px;
+            border-radius: 4px;
+            font-size: 14px;
+            color: var(--text-color);
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            transform: translate(-50%, -50%); /* Center the pill */
+        }
+
+        .industry-label:hover .label-pill,
+        .industry-label.active .label-pill {
+            border-color: var(--accent-color);
+            background: rgba(0, 170, 80, 0.2);
+        }
+
+        /* Adjust dropdown position based on pill location */
+        .industry-label .label-dropdown {
+            top: 25px; /* Relative to centered pill */
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+        }
+
+        .industry-label.active .label-dropdown {
+            transform: translateX(-50%) translateY(0);
+        }
+
+        /* Line connecting pill to dropdown */
+        .industry-label.active::after {
+            content: '';
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            width: 1px;
+            height: 15px;
+            background: var(--accent-color);
+            border-left: 1px dashed var(--accent-color);
+            transform: translateX(-50%);
+        }
+
+        /* Dropdown/Tooltip Styling */
+        .label-dropdown {
+            position: absolute;
+            width: 240px;
+            background: rgba(14, 20, 32, 0.95);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            text-align: left;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 20;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .industry-label.active .label-dropdown {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .dropdown-title {
+            font-family: var(--font-heading);
+            font-size: 14px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .dropdown-content {
+            font-size: 13px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* Positioning the labels in rings */
+        /* Each label should have --i (index) and --total (total labels in ring) set in inline style */
+    </style>
+</head>
+<body>
+
+    <section class="industry-globe-section">
+        <h2 class="section-title">Every Industry Is<br>Looking to the Sky</h2>
+
+        <div class="globe-container">
+            <div class="labels-container">
+                <!-- Outer Ring (5 items) -->
+                <div class="industry-label" style="--i: 0; --total: 5;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Maritime</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Maritime Services</span>
+                        <p class="dropdown-content">Global vessel tracking and optimization for efficient maritime operations.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label" style="--i: 1; --total: 5;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Agriculture</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Agriculture Tech</span>
+                        <p class="dropdown-content">Precision farming data to increase crop yields and monitor soil health.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label" style="--i: 2; --total: 5;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Finance</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Financial Services</span>
+                        <p class="dropdown-content">Satellite timing signals synchronize global financial transactions.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label" style="--i: 3; --total: 5;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Supply Chain</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Logistics & Supply</span>
+                        <p class="dropdown-content">End-to-end visibility across the entire global supply chain network.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label" style="--i: 4; --total: 5;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Connectivity</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Global Connectivity</span>
+                        <p class="dropdown-content">High-speed internet access in the most remote locations on Earth.</p>
+                    </div>
+                </div>
+
+                <!-- Inner Ring (4 items) -->
+                <div class="industry-label inner-ring" style="--i: 0; --total: 4;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Navigation</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Global Navigation</span>
+                        <p class="dropdown-content">Centimeter-level accuracy for autonomous vehicles and mapping.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label inner-ring" style="--i: 1; --total: 4;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Weather</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Climate Monitoring</span>
+                        <p class="dropdown-content">Real-time weather forecasting and long-term climate change analysis.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label inner-ring" style="--i: 2; --total: 4;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Insurance</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Risk Assessment</span>
+                        <p class="dropdown-content">Earth observation data for rapid claims processing and risk modeling.</p>
+                    </div>
+                </div>
+
+                <div class="industry-label inner-ring" style="--i: 3; --total: 4;" onclick="toggleLabel(this)">
+                    <div class="label-pill">Energy</div>
+                    <div class="label-dropdown">
+                        <span class="dropdown-title">Energy Resources</span>
+                        <p class="dropdown-content">Monitoring infrastructure and identifying new renewable energy sites.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleLabel(element) {
+            // Close other active labels
+            const activeLabels = document.querySelectorAll('.industry-label.active');
+            activeLabels.forEach(label => {
+                if (label !== element) {
+                    label.classList.remove('active');
+                }
+            });
+
+            // Toggle current label
+            element.classList.toggle('active');
+        }
+
+        // Close when clicking outside
+        document.addEventListener('click', function(event) {
+            if (!event.target.closest('.industry-label')) {
+                const activeLabels = document.querySelectorAll('.industry-label.active');
+                activeLabels.forEach(label => {
+                    label.classList.remove('active');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

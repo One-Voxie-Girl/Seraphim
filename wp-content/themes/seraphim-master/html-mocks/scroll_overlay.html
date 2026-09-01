@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scroll Overlay Mock</title>
+    <style>
+        :root {
+            --bg-color: #020714;
+            --text-color: #FFFFFF;
+            --accent-green: #00AA50;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Hero / Globe Section */
+        .globe-section {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            padding-top: 10vh;
+            text-align: center;
+            z-index: 1; /* Base layer for globe */
+        }
+
+        .sector-guide {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            color: var(--accent-green);
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 30px;
+        }
+
+        .sector-guide::before {
+            content: "";
+            width: 4px;
+            height: 4px;
+            background: var(--accent-green);
+            border-radius: 50%;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 4rem);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin: 0;
+            line-height: 1.1;
+        }
+
+        .description {
+            max-width: 600px;
+            margin-top: 30px;
+            color: #A6A7AB;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .globe-image {
+            position: fixed;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: auto;
+            z-index: 10; /* In front of hero text and content */
+            pointer-events: none;
+            display: block;
+        }
+
+        .scroll-hint {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #A6A7AB;
+        }
+
+        .globe-sequence {
+            position: relative;
+        }
+
+        .content-section {
+            position: relative;
+            z-index: 5; /* Lower than globe image inside sequence */
+            padding: 100vh 20px 0;
+            background: transparent;
+        }
+
+        /* Override for content outside the sequence */
+        .globe-sequence ~ .content-section {
+            padding-top: 100px;
+            padding-bottom: 100px;
+            z-index: 200;
+            background: var(--bg-color);
+        }
+
+        .content-block {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(2, 7, 20, 0.95);
+            padding: 60px;
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            margin-bottom: 0; /* Removed margin-bottom */
+        }
+
+        /* Spacer to push overlay down */
+        .spacer {
+            height: 100vh;
+        }
+
+        /* Top Overlay Section - Covers the globe */
+        .overlay-section {
+            position: fixed;
+            width: 100vw;
+            min-height: 100vh;
+            z-index: 100; /* Extremely high to ensure it stays in front */
+            background: var(--bg-color); /* To ensure it covers everything */
+            display: flex;
+            align-items: flex-end; /* Align image to bottom */
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .overlay-image {
+            width: 100vw; /* Match screen width */
+            height: auto;
+            max-width: none;
+            display: block;
+            position: relative;
+            z-index: 101;
+        }
+
+        .globe-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 10;
+            will-change: transform;
+            /* Remove transition for tighter scroll sync */
+        }
+
+        .overlay-section {
+            position: -ms-device-fixed;
+            width: 100vw;
+            min-height: 100vh;
+            z-index: 100; /* Extremely high to ensure it stays in front */
+            background: var(--bg-color); /* To ensure it covers everything */
+            display: flex;
+            align-items: flex-end; /* Align image to bottom */
+            justify-content: center;
+            overflow: hidden;
+            transform: translateY(0);
+        }
+
+    </style>
+</head>
+<body>
+    <section class="globe-sequence">
+
+        <div class="globe-container">
+            <img src="globe.png" alt="Globe" class="globe-image">
+            <img src="Screenshot 2026-08-31 1521423.png" alt="overlay" class="globe-image">
+        </div>
+
+        <section class="globe-section">
+            <div class="sector-guide">Sector Guide</div>
+            <h1>A NEW SPACE ECONOMY<br>IS TAKING OFF</h1>
+            <p class="description">
+                Currently the global space sector is worth $469bn, with 77% accounted for by the
+                commercial market. Analysts project it will exceed $1 trillion by the end of the decade.
+            </p>
+        </section>
+
+        <div class="scroll-hint">
+            Scroll to discover
+            <div style="margin-top: 10px;">↓</div>
+        </div>
+
+        <section class="content-section">
+            <div class="content-block">
+                <h2>The Commercial Frontier</h2>
+                <p>This content appears from behind the globe as you scroll up.</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            </div>
+        </section>
+
+        <div class="spacer"></div>
+
+<!--        <section class="overlay-section ">-->
+<!--            <img src="Screenshot 2026-08-31 1521423.png" alt="Overlay" class="overlay-image">-->
+<!--        </section>-->
+
+    </section>
+
+    <section class="content-section">
+        <div class="content-block">
+            <h2>Regular Content Section</h2>
+            <p>This content is OUTSIDE the globe section and should be fully visible.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </section>
+    <section class="content-section">
+        <div class="content-block">
+            <h2>More Regular Content</h2>
+            <p>This should also be visible and not covered by any fixed elements from above.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        </div>
+    </section>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const scrollY = window.scrollY;
+            const globeContainer = document.querySelector('.globe-container');
+            const scrollHint = document.querySelector('.scroll-hint');
+            const overlaySection = document.querySelector('.overlay-section');
+            
+            // Fade out scroll hint
+            if (scrollY > 50) {
+                scrollHint.style.opacity = '0';
+                scrollHint.style.transition = 'opacity 0.3s ease';
+            } else {
+                scrollHint.style.opacity = '1';
+            }
+
+            // Move globe up with the overlay once the overlay enters the viewport
+            const overlayRect = overlaySection.getBoundingClientRect();
+            const overlayTop = overlayRect.top + window.scrollY;
+            const viewportHeight = window.innerHeight;
+            
+            if (scrollY + viewportHeight > overlayTop) {
+                const diff = (scrollY + viewportHeight) - overlayTop;
+                // Match the movement speed exactly so they appear locked
+                globeContainer.style.transform = `translateY(-${diff}px)`;
+                
+                // Hide globe if it's completely out of view (pushed up past its height)
+                // This ensures it doesn't cover content that follows the sequence
+                if (diff > viewportHeight) {
+                    globeContainer.style.visibility = 'hidden';
+                } else {
+                    globeContainer.style.visibility = 'visible';
+                }
+            } else {
+                globeContainer.style.transform = `translateY(0)`;
+                globeContainer.style.visibility = 'visible';
+            }
+        });
+    </script>
+</body>
+</html>

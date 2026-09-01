@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs Prototype</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../assets/scss/main.css" rel="stylesheet" />
+    <style>
+        /* Temporary styles for the prototype until moved to SCSS */
+        body {
+            background-color: #020714;
+            color: #FFFFFF;
+            padding: 50px 0;
+        }
+
+        .faqsSection {
+            padding: 80px 0;
+        }
+
+        .faqsTitle h2 {
+            font-family: "Osiris", sans-serif;
+            font-size: 4rem;
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 0;
+        }
+
+        .faqList {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .faqCard {
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            padding: 30px;
+            background: rgba(14, 20, 32, 0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faqCard.active {
+            background: rgba(14, 20, 32, 0.8);
+            border-color: rgba(0, 170, 80, 0.3); /* $terrain300 */
+        }
+        
+        /* The green side border in the image */
+        .faqCard.active::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: #00AA50; /* $terrain300 */
+        }
+
+        .faqCard__header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faqCard__header h4 {
+            margin: 0;
+            font-weight: 400;
+            font-size: 1.25rem;
+        }
+
+        .faqCard__icon {
+            font-size: 1.5rem;
+            color: rgba(255, 255, 255, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .faqCard.active .faqCard__icon {
+            transform: rotate(45deg); /* Plus becomes X */
+            color: #00AA50;
+        }
+
+        .faqCard__content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faqCard.active .faqCard__content {
+            max-height: 1000px;
+        }
+
+        .faqCard__inner {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .faqCard__inner p {
+            color: #A6A7AB; /* $white65 */
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .faqCard__link {
+            color: #00AA50;
+            text-decoration: underline;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container faqsSection">
+    <div class="row">
+        <div class="col-12 col-lg-5 faqsTitle">
+            <h2>FREQUENTLY</h2>
+            <h2>ASKED QUESTIONS</h2>
+        </div>
+        <div class="col-12 col-lg-7">
+            <div class="faqList">
+                
+                <div class="faqCard">
+                    <div class="faqCard__header">
+                        <h4>Is there a minimum investment?</h4>
+                        <div class="faqCard__icon">+</div>
+                    </div>
+                    <div class="faqCard__content">
+                        <div class="faqCard__inner">
+                            <p>Lorem ipsum dolor sit amet consectetur. Nisl blandit integer venenatis tellus etiam. Porttitor amet dapibus vitae tellus eget lectus. Nibh pulvinar sagittis sed tortor tristique cras. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqCard active">
+                    <div class="faqCard__header">
+                        <h4>Can I hold SSIT in an ISA or pension?</h4>
+                        <div class="faqCard__icon">+</div>
+                    </div>
+                    <div class="faqCard__content">
+                        <div class="faqCard__inner">
+                            <p>Lorem ipsum dolor sit amet consectetur. Nisl blandit integer venenatis tellus etiam. Porttitor amet dapibus vitae tellus eget lectus. Nibh pulvinar sagittis sed tortor tristique cras. Ullamcorper arcu scelerisque nisi viverra in vitae nunc in. Lorem ipsum dolor sit amet consectetur. Nisl blandit integer venenatis tellus etiam.</p>
+                            <a href="#" class="faqCard__link">See Terms of Reference</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqCard">
+                    <div class="faqCard__header">
+                        <h4>What does it cost?</h4>
+                        <div class="faqCard__icon">+</div>
+                    </div>
+                    <div class="faqCard__content">
+                        <div class="faqCard__inner">
+                            <p>Lorem ipsum dolor sit amet consectetur. Nisl blandit integer venenatis tellus etiam. Porttitor amet dapibus vitae tellus eget lectus. Nibh pulvinar sagittis sed tortor tristique cras. </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="faqCard">
+                    <div class="faqCard__header">
+                        <h4>Does SSIT pay dividends?</h4>
+                        <div class="faqCard__icon">+</div>
+                    </div>
+                    <div class="faqCard__content">
+                        <div class="faqCard__inner">
+                            <p>Lorem ipsum dolor sit amet consectetur. Nisl blandit integer venenatis tellus etiam. Porttitor amet dapibus vitae tellus eget lectus. Nibh pulvinar sagittis sed tortor tristique cras. </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        $('.faqCard').on('click', function() {
+            $(this).toggleClass('active');
+            
+            // Optional: Close other cards when one is opened
+            // $('.faqCard').not(this).removeClass('active');
+        });
+    });
+</script>
+
+</body>
+</html>
